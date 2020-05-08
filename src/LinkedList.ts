@@ -6,13 +6,14 @@
 
 import {
 	LinkedNode,
+	LinkedNodeList,
 	LinkedNodeWithValue,
 	NodeWithValue
-} from '@tsdotnet/linked-node-list/dist/LinkedListNode';
+} from '@tsdotnet/linked-node-list';
 import InvalidOperationException from '@tsdotnet/exceptions/dist/InvalidOperationException';
 import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
 import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
-import LinkedNodeList from '@tsdotnet/linked-node-list';
+import {areEqual, EqualityComparison} from '@tsdotnet/compare';
 
 
 /*****************************
@@ -113,114 +114,200 @@ function detachExternal (node: InternalNode<any>): void
 	}
 }
 
-export class LinkedList<T>
+export default class LinkedList<T>
 	extends CollectionBase<T>
 {
 	private readonly _listInternal: LinkedNodeList<InternalNode<T>> = new LinkedNodeList<InternalNode<T>>();
 
+	constructor (
+		initialValues?: Iterable<T> | null,
+		equalityComparer: EqualityComparison<T> = areEqual)
+	{
+		super(equalityComparer);
+		if(initialValues) this._addEntries(initialValues);
+	}
+
+	/**
+	 * Returns the first node or undefined if the list is empty.
+	 */
 	get first (): LinkedListNode<T> | undefined
 	{
 		return ensureExternal(this._listInternal.first, this);
 	}
 
+	/**
+	 * Returns the first value or undefined if the list is empty.
+	 */
 	get firstValue (): T | undefined
 	{
 		return this._listInternal.first?.value;
 	}
 
+	/**
+	 * Returns the last node or undefined if the list is empty.
+	 */
 	get last (): LinkedListNode<T> | undefined
 	{
 		return ensureExternal(this._listInternal.last, this);
 	}
 
+	/**
+	 * Returns the last value or undefined if the list is empty.
+	 */
 	get lastValue (): T | undefined
 	{
 		return this._listInternal.last?.value;
 	}
 
-	protected _getIterator (): Iterator<T>
+	/**
+	 * The version number used to track changes.
+	 * @returns {number}
+	 */
+	get version (): number
 	{
-		return LinkedNodeList.valueIterableFrom(this._listInternal)[Symbol.iterator]();
+		return this._listInternal.version;
 	}
 
+	/**
+	 * Iterates the list and finds the first node that matches the provided value and removes it.
+	 * @param entry The value to remove.
+	 * @return {boolean} True if found and removes, otherwise false.
+	 */
 	removeOnce (entry: T): boolean
 	{
 		return this.remove(entry, 1)!==0;
 	}
 
-	// #endregion
-
+	/**
+	 * Iterates the list returns the value of the node at the index requested.
+	 * Returns undefined if the index is out of range.
+	 * @param index
+	 * @returns The value at the index requested or undefined.
+	 */
 	getValueAt (index: number): T | undefined
 	{
-		const node = this._listInternal.getNodeAt(index);
-		return node ? node.value : undefined;
+		return this._listInternal.getNodeAt(index)?.value;
 	}
 
-	// #endregion
-
+	/**
+	 * Iterates the list returns the the node at the index requested.
+	 * Returns undefined if the index is out of range.
+	 * @param index
+	 * @returns The node at the index requested or undefined.
+	 */
 	getNodeAt (index: number): LinkedListNode<T> | undefined
 	{
 		return ensureExternal(this._listInternal.getNodeAt(index), this);
 	}
 
+	/**
+	 * Iterates the list returns the the first node that matches the value specified.
+	 * Returns undefined if not found.
+	 * @param entry
+	 * @returns The node matching the entry or undefined if not found
+	 */
 	find (entry: T): LinkedListNode<T> | undefined
 	{
-		const li = this._listInternal;
-		return li && ensureExternal(this._findFirst(entry), this);
+		return ensureExternal(this._findFirst(entry), this);
 	}
 
+	/**
+	 * Iterates the list in reverse returns the the first node that matches the value specified.
+	 * Returns undefined if not found.
+	 * @param entry
+	 * @returns The node matching the entry or undefined if not found
+	 */
 	findLast (entry: T): LinkedListNode<T> | undefined
 	{
 		const li = this._listInternal;
 		return li && ensureExternal(this._findLast(entry), this);
 	}
 
+	/**
+	 * Adds to specified entry to the beginning of the list.
+	 * @param entry
+	 * @return {this}
+	 */
 	addFirst (entry: T): this
 	{
 		this._listInternal.addNodeBefore(new InternalNode(entry));
 		return this;
 	}
 
+	/**
+	 * Adds to specified entry to the end of the list.
+	 * @param entry
+	 * @return {this}
+	 */
 	addLast (entry: T): this
 	{
 		return this.add(entry);
 	}
 
+	/**
+	 * Removes the first node and returns its value.
+	 * @return The value of the first node or undefined if the list is empty.
+	 */
 	takeFirstValue (): T | undefined
 	{
 		const n = this._listInternal.first;
 		return this._removeNodeInternal(n) ? n?.value : undefined;
 	}
 
+	/**
+	 * Removes the first node.
+	 * @return True if the node was removed.  False if the list is empty.
+	 */
 	removeFirst (): boolean
 	{
 		return this._removeNodeInternal(this._listInternal.first);
 	}
 
-	// get methods are available for convenience but is an n*index operation.
-
+	/**
+	 * Removes the last node and returns its value.
+	 * @return The value of the last node or undefined if the list is empty.
+	 */
 	takeLastValue (): T | undefined
 	{
 		const n = this._listInternal.last;
 		return this._removeNodeInternal(n) ? n?.value : undefined;
 	}
 
+	/**
+	 * Removes the last node.
+	 * @return True if the node was removed.  False if the list is empty.
+	 */
 	removeLast (): boolean
 	{
 		return this._removeNodeInternal(this._listInternal.last);
 	}
 
+	/**
+	 * Removes the node at the specified index.
+	 * @param {number} index
+	 * @return {boolean} True if the node was removed.  False if the index was out of range.
+	 */
 	removeAt (index: number): boolean
 	{
 		return this._removeNodeInternal(this._listInternal.getNodeAt(index));
 	}
 
-	// Returns true if successful and false if not found (already removed).
+	/**
+	 * Removes the node specified.
+	 * @param {number} node
+	 * @return {boolean} True if the node was removed.  False if not found (already removed).
+	 */
 	removeNode (node: LinkedListNode<T>): boolean
 	{
 		return this._removeNodeInternal(getInternal(node, this));
 	}
 
+	/**
+	 * Adds a entry before the specified node.
+	 * @param {LinkedListNode} before The node to follow the entry.
+	 * @param entry The value to insert before the node.
+	 * @return {this}
+	 */
 	addBefore (before: LinkedListNode<T>, entry: T): this
 	{
 		this._listInternal.addNodeBefore(
@@ -230,6 +317,12 @@ export class LinkedList<T>
 		return this;
 	}
 
+	/**
+	 * Adds a entry after the specified node.
+	 * @param {LinkedListNode} after The node to precede the entry.
+	 * @param entry The value to insert after the node.
+	 * @return {this}
+	 */
 	addAfter (after: LinkedListNode<T>, entry: T): this
 	{
 		this._listInternal.addNodeAfter(
@@ -240,19 +333,41 @@ export class LinkedList<T>
 		return this;
 	}
 
-	get version (): number
+	/**
+	 * Increments the collection version.
+	 * Useful for tracking changes.
+	 * @return {number} The new version.
+	 */
+	incrementVersion (): number
 	{
-		return this._listInternal.version;
+		return this._listInternal.incrementVersion();
 	}
 
+	/**
+	 * Throws if the provided version does not match the current one.
+	 * @param {number} version
+	 * @returns {boolean}
+	 */
 	assertVersion (version: number): true | never
 	{
 		return this._listInternal.assertVersion(version);
 	}
 
+	/**
+	 * Gets the number of nodes in the list.
+	 * @return {number}
+	 */
 	getCount (): number
 	{
 		return this._listInternal.unsafeCount;
+	}
+
+	protected* _getIterator (): Iterator<T>
+	{
+		for(const n of this._listInternal)
+		{
+			yield n.value;
+		}
 	}
 
 	protected _addInternal (entry: T): boolean
@@ -406,5 +521,3 @@ class InternalLinkedListNode<T>
 	}
 
 }
-
-export default LinkedList;

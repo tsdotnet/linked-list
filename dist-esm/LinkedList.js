@@ -3,10 +3,11 @@
  * Based Upon: http://msdn.microsoft.com/en-us/library/he2s3bh7%28v=vs.110%29.aspx
  * Licensing: MIT https://github.com/electricessence/TypeScript.NET-Core/blob/master/LICENSE.md
  */
+import { LinkedNodeList } from '@tsdotnet/linked-node-list';
 import InvalidOperationException from '@tsdotnet/exceptions/dist/InvalidOperationException';
 import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
 import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
-import LinkedNodeList from '@tsdotnet/linked-node-list';
+import { areEqual } from '@tsdotnet/compare';
 /*
  * An internal node is used to manage the order without exposing underlying link chain to the consumer.
  */
@@ -54,10 +55,12 @@ function detachExternal(node) {
         node.external = undefined;
     }
 }
-export class LinkedList extends CollectionBase {
-    constructor() {
-        super(...arguments);
+export default class LinkedList extends CollectionBase {
+    constructor(initialValues, equalityComparer = areEqual) {
+        super(equalityComparer);
         this._listInternal = new LinkedNodeList();
+        if (initialValues)
+            this._addEntries(initialValues);
     }
     get first() {
         return ensureExternal(this._listInternal.first, this);
@@ -73,24 +76,24 @@ export class LinkedList extends CollectionBase {
         var _a;
         return (_a = this._listInternal.last) === null || _a === void 0 ? void 0 : _a.value;
     }
-    _getIterator() {
-        return LinkedNodeList.valueIterableFrom(this._listInternal)[Symbol.iterator]();
+    *_getIterator() {
+        for (const n of this._listInternal)
+            yield n.value;
     }
     removeOnce(entry) {
         return this.remove(entry, 1) !== 0;
     }
     // #endregion
     getValueAt(index) {
-        const node = this._listInternal.getNodeAt(index);
-        return node ? node.value : undefined;
+        var _a;
+        return (_a = this._listInternal.getNodeAt(index)) === null || _a === void 0 ? void 0 : _a.value;
     }
     // #endregion
     getNodeAt(index) {
         return ensureExternal(this._listInternal.getNodeAt(index), this);
     }
     find(entry) {
-        const li = this._listInternal;
-        return li && ensureExternal(this._findFirst(entry), this);
+        return ensureExternal(this._findFirst(entry), this);
     }
     findLast(entry) {
         const li = this._listInternal;
@@ -135,6 +138,9 @@ export class LinkedList extends CollectionBase {
     }
     get version() {
         return this._listInternal.version;
+    }
+    incrementVersion() {
+        return this._listInternal.incrementVersion();
     }
     assertVersion(version) {
         return this._listInternal.assertVersion(version);
@@ -246,5 +252,4 @@ class InternalLinkedListNode {
             throw new Error('This node has been detached from its list and is no longer valid.');
     }
 }
-export default LinkedList;
 //# sourceMappingURL=LinkedList.js.map

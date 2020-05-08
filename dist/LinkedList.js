@@ -6,10 +6,11 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
+const linked_node_list_1 = require("@tsdotnet/linked-node-list");
 const InvalidOperationException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/InvalidOperationException"));
 const ArgumentNullException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/ArgumentNullException"));
 const CollectionBase_1 = tslib_1.__importDefault(require("@tsdotnet/collection-base/dist/CollectionBase"));
-const linked_node_list_1 = tslib_1.__importDefault(require("@tsdotnet/linked-node-list"));
+const compare_1 = require("@tsdotnet/compare");
 /*
  * An internal node is used to manage the order without exposing underlying link chain to the consumer.
  */
@@ -58,9 +59,11 @@ function detachExternal(node) {
     }
 }
 class LinkedList extends CollectionBase_1.default {
-    constructor() {
-        super(...arguments);
-        this._listInternal = new linked_node_list_1.default();
+    constructor(initialValues, equalityComparer = compare_1.areEqual) {
+        super(equalityComparer);
+        this._listInternal = new linked_node_list_1.LinkedNodeList();
+        if (initialValues)
+            this._addEntries(initialValues);
     }
     get first() {
         return ensureExternal(this._listInternal.first, this);
@@ -76,24 +79,24 @@ class LinkedList extends CollectionBase_1.default {
         var _a;
         return (_a = this._listInternal.last) === null || _a === void 0 ? void 0 : _a.value;
     }
-    _getIterator() {
-        return linked_node_list_1.default.valueIterableFrom(this._listInternal)[Symbol.iterator]();
+    *_getIterator() {
+        for (const n of this._listInternal)
+            yield n.value;
     }
     removeOnce(entry) {
         return this.remove(entry, 1) !== 0;
     }
     // #endregion
     getValueAt(index) {
-        const node = this._listInternal.getNodeAt(index);
-        return node ? node.value : undefined;
+        var _a;
+        return (_a = this._listInternal.getNodeAt(index)) === null || _a === void 0 ? void 0 : _a.value;
     }
     // #endregion
     getNodeAt(index) {
         return ensureExternal(this._listInternal.getNodeAt(index), this);
     }
     find(entry) {
-        const li = this._listInternal;
-        return li && ensureExternal(this._findFirst(entry), this);
+        return ensureExternal(this._findFirst(entry), this);
     }
     findLast(entry) {
         const li = this._listInternal;
@@ -138,6 +141,9 @@ class LinkedList extends CollectionBase_1.default {
     }
     get version() {
         return this._listInternal.version;
+    }
+    incrementVersion() {
+        return this._listInternal.incrementVersion();
     }
     assertVersion(version) {
         return this._listInternal.assertVersion(version);
@@ -197,7 +203,7 @@ class LinkedList extends CollectionBase_1.default {
         return false;
     }
 }
-exports.LinkedList = LinkedList;
+exports.default = LinkedList;
 // Use an internal node class to prevent mucking up the LinkedList.
 class InternalLinkedListNode {
     constructor(_list, _nodeInternal) {
@@ -250,5 +256,4 @@ class InternalLinkedListNode {
             throw new Error('This node has been detached from its list and is no longer valid.');
     }
 }
-exports.default = LinkedList;
 //# sourceMappingURL=LinkedList.js.map

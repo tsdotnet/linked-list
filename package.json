@@ -1,6 +1,6 @@
 {
   "name": "@tsdotnet/linked-list",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "",
   "author": "electricessence",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "build:dist-esm": "rimraf dist-esm/* && tsc -p tsconfig.esm.json",
     "build": "npm install && run-p build:*",
     "bump": "npm run precommit && npm version patch",
-    "docs": "rimraf docs/* && rimraf docs/.nojekyll && typedoc --options typedoc.json --readme none --theme minimal && node ./.build/create-nojekyll.js",
+    "docs": "rimraf docs/* && rimraf docs/.nojekyll && typedoc --options typedoc.json --readme none && node ./.build/create-nojekyll.js",
     "lint": "eslint src/**/*.ts",
     "precommit": "npm prune && npm install && run-p lint test && run-p build:* && npm run validate",
     "prepublishOnly": "npm run build && run-p validate test",
@@ -31,11 +31,12 @@
   },
   "homepage": "https://github.com/tsdotnet/linked-list#readme",
   "devDependencies": {
+    "@tsdotnet/array-compare": "^1.0.4",
     "@types/jasmine": "^3.5.10",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
     "copyfiles": "^2.2.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "eslint-config-typescript": "^3.0.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
@@ -48,8 +49,9 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@tsdotnet/collection-base": "^1.0.5",
+    "@tsdotnet/collection-base": "^1.0.9",
+    "@tsdotnet/compare": "^1.0.12",
     "@tsdotnet/exceptions": "^1.0.12",
-    "@tsdotnet/linked-node-list": "^1.1.6"
+    "@tsdotnet/linked-node-list": "^1.2.2"
   }
 }

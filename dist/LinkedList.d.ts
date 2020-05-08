@@ -3,8 +3,9 @@
  * Based Upon: http://msdn.microsoft.com/en-us/library/he2s3bh7%28v=vs.110%29.aspx
  * Licensing: MIT https://github.com/electricessence/TypeScript.NET-Core/blob/master/LICENSE.md
  */
-import { LinkedNodeWithValue } from '@tsdotnet/linked-node-list/dist/LinkedListNode';
+import { LinkedNodeWithValue } from '@tsdotnet/linked-node-list';
 import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
+import { EqualityComparison } from '@tsdotnet/compare';
 /*****************************
  * IMPORTANT NOTES ABOUT PERFORMANCE:
  * http://jsperf.com/simulating-a-queue
@@ -21,8 +22,9 @@ export interface LinkedListNode<T> extends LinkedNodeWithValue<T> {
     addAfter(entry: T): void;
     remove(): void;
 }
-export declare class LinkedList<T> extends CollectionBase<T> {
+export default class LinkedList<T> extends CollectionBase<T> {
     private readonly _listInternal;
+    constructor(initialValues?: Iterable<T> | null, equalityComparer?: EqualityComparison<T>);
     get first(): LinkedListNode<T> | undefined;
     get firstValue(): T | undefined;
     get last(): LinkedListNode<T> | undefined;
@@ -44,6 +46,7 @@ export declare class LinkedList<T> extends CollectionBase<T> {
     addBefore(before: LinkedListNode<T>, entry: T): this;
     addAfter(after: LinkedListNode<T>, entry: T): this;
     get version(): number;
+    incrementVersion(): number;
     assertVersion(version: number): true | never;
     getCount(): number;
     protected _addInternal(entry: T): boolean;
@@ -53,4 +56,3 @@ export declare class LinkedList<T> extends CollectionBase<T> {
     private _findLast;
     private _removeNodeInternal;
 }
-export default LinkedList;
