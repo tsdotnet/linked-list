@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>LinkedList | @tsdotnet/linked-list - v0.1.1</title>
-	<meta name="description" content="Documentation for @tsdotnet/linked-list - v0.1.1">
+	<title>LinkedList | @tsdotnet/linked-list - v1.0.0</title>
+	<meta name="description" content="Documentation for @tsdotnet/linked-list - v1.0.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@tsdotnet/linked-list - v0.1.1</a>
+					<a href="../index.html" class="title">@tsdotnet/linked-list - v1.0.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -97,10 +97,10 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
+						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-protected"><a href="_linkedlist_.linkedlist.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_linkedlist_.linkedlist.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
@@ -146,6 +146,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_linkedlist_.linkedlist.html#getcount" class="tsd-kind-icon">get<wbr>Count</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#getnodeat" class="tsd-kind-icon">get<wbr>Node<wbr>At</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#getvalueat" class="tsd-kind-icon">get<wbr>Value<wbr>At</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_linkedlist_.linkedlist.html#incrementversion" class="tsd-kind-icon">increment<wbr>Version</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedlist_.linkedlist.html#remove" class="tsd-kind-icon">remove</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#removeat" class="tsd-kind-icon">remove<wbr>At</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#removefirst" class="tsd-kind-icon">remove<wbr>First</a></li>
@@ -160,30 +161,29 @@
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Linked<wbr>List<span class="tsd-signature-symbol">(</span>initialValues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, equalityComparer<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">EqualityComparison</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedlist_.linkedlist.html" class="tsd-signature-type">LinkedList</a></li>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Linked<wbr>List<span class="tsd-signature-symbol">(</span>initialValues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, equalityComparer<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">EqualityComparison</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedlist_.linkedlist.html" class="tsd-signature-type">LinkedList</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_linkedlist_.linkedlist.html">LinkedList</a>.<a href="_linkedlist_.linkedlist.html#constructor">constructor</a></p>
-								<p>Overrides ReadOnlyCollectionBase.__constructor</p>
+								<p>Overrides CollectionBase.__constructor</p>
 								<ul>
-									<li>Defined in node_modules/@tsdotnet/collection-base/dist/CollectionBase.d.ts:6</li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L120">src/LinkedList.ts:120</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> initialValues: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> initialValues: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> equalityComparer: <span class="tsd-signature-type">EqualityComparison</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> equalityComparer: <span class="tsd-signature-type">EqualityComparison</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = areEqual</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_linkedlist_.linkedlist.html" class="tsd-signature-type">LinkedList</a></h4>
@@ -240,9 +240,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L121">src/LinkedList.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L133">src/LinkedList.ts:133</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the first node or undefined if the list is empty.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_linkedlist_.linkedlistnode.html" class="tsd-signature-type">LinkedListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 						</li>
 					</ul>
@@ -257,9 +262,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L126">src/LinkedList.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L141">src/LinkedList.ts:141</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the first value or undefined if the list is empty.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 						</li>
 					</ul>
@@ -274,9 +284,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L131">src/LinkedList.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L149">src/LinkedList.ts:149</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the last node or undefined if the list is empty.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_linkedlist_.linkedlistnode.html" class="tsd-signature-type">LinkedListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 						</li>
 					</ul>
@@ -291,9 +306,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L136">src/LinkedList.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L157">src/LinkedList.ts:157</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the last value or undefined if the list is empty.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 						</li>
 					</ul>
@@ -309,9 +329,14 @@
 							<aside class="tsd-sources">
 								<p>Overrides IterableCollectionBase.version</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L243">src/LinkedList.ts:243</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L166">src/LinkedList.ts:166</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The version number used to track changes.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
@@ -330,7 +355,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_linkedlist_.linkedlist.html">LinkedList</a>.<a href="_linkedlist_.linkedlist.html#_symbol_iterator_">[Symbol.iterator]</a></p>
 								<ul>
-									<li>Defined in node_modules/@tsdotnet/collection-base/dist/IterableCollectionBase.d.ts:19</li>
+									<li>Defined in node_modules/@tsdotnet/collection-base/dist/IterableCollectionBase.d.ts:20</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -372,7 +397,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides CollectionBase._addInternal</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L258">src/LinkedList.ts:258</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L373">src/LinkedList.ts:373</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -396,7 +421,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides CollectionBase._clearInternal</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L282">src/LinkedList.ts:282</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L397">src/LinkedList.ts:397</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -414,7 +439,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides IterableCollectionBase._getIterator</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L141">src/LinkedList.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L365">src/LinkedList.ts:365</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -432,7 +457,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides CollectionBase._removeInternal</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L264">src/LinkedList.ts:264</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L379">src/LinkedList.ts:379</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -489,16 +514,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L233">src/LinkedList.ts:233</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L326">src/LinkedList.ts:326</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds a entry after the specified node.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>after: <a href="../interfaces/_linkedlist_.linkedlistnode.html" class="tsd-signature-type">LinkedListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The node to precede the entry.</p>
+									</div>
 								</li>
 								<li>
 									<h5>entry: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value to insert after the node.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -515,16 +551,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L224">src/LinkedList.ts:224</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L311">src/LinkedList.ts:311</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds a entry before the specified node.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>before: <a href="../interfaces/_linkedlist_.linkedlistnode.html" class="tsd-signature-type">LinkedListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The node to follow the entry.</p>
+									</div>
 								</li>
 								<li>
 									<h5>entry: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value to insert before the node.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -570,9 +617,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L178">src/LinkedList.ts:178</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L231">src/LinkedList.ts:231</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds to specified entry to the beginning of the list.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -593,9 +645,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L184">src/LinkedList.ts:184</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L242">src/LinkedList.ts:242</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds to specified entry to the end of the list.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -617,9 +674,14 @@
 							<aside class="tsd-sources">
 								<p>Overrides IterableCollectionBase.assertVersion</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L248">src/LinkedList.ts:248</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L351">src/LinkedList.ts:351</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Throws if the provided version does not match the current one.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -693,7 +755,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_linkedlist_.linkedlist.html">LinkedList</a>.<a href="_linkedlist_.linkedlist.html#copyto">copyTo</a></p>
 								<ul>
-									<li>Defined in node_modules/@tsdotnet/collection-base/dist/IterableCollectionBase.d.ts:26</li>
+									<li>Defined in node_modules/@tsdotnet/collection-base/dist/IterableCollectionBase.d.ts:27</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -777,9 +839,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L166">src/LinkedList.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L209">src/LinkedList.ts:209</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Iterates the list returns the the first node that matches the value specified.
+									Returns undefined if not found.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -787,6 +855,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_linkedlist_.linkedlistnode.html" class="tsd-signature-type">LinkedListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+							<p>The node matching the entry or undefined if not found</p>
 						</li>
 					</ul>
 				</section>
@@ -800,9 +869,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L172">src/LinkedList.ts:172</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L220">src/LinkedList.ts:220</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Iterates the list in reverse returns the the first node that matches the value specified.
+									Returns undefined if not found.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -810,6 +885,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_linkedlist_.linkedlistnode.html" class="tsd-signature-type">LinkedListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+							<p>The node matching the entry or undefined if not found</p>
 						</li>
 					</ul>
 				</section>
@@ -824,9 +900,14 @@
 							<aside class="tsd-sources">
 								<p>Overrides CollectionBase.getCount</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L253">src/LinkedList.ts:253</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L360">src/LinkedList.ts:360</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the number of nodes in the list.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
@@ -841,9 +922,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L161">src/LinkedList.ts:161</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L198">src/LinkedList.ts:198</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Iterates the list returns the the node at the index requested.
+									Returns undefined if the index is out of range.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -851,6 +938,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_linkedlist_.linkedlistnode.html" class="tsd-signature-type">LinkedListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+							<p>The node at the index requested or undefined.</p>
 						</li>
 					</ul>
 				</section>
@@ -864,9 +952,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L153">src/LinkedList.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L187">src/LinkedList.ts:187</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Iterates the list returns the value of the node at the index requested.
+									Returns undefined if the index is out of range.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -874,6 +968,32 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+							<p>The value at the index requested or undefined.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="incrementversion" class="tsd-anchor"></a>
+					<h3>increment<wbr>Version</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">increment<wbr>Version<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides IterableCollectionBase.incrementVersion</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L341">src/LinkedList.ts:341</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Increments the collection version.
+									Useful for tracking changes.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>The new version.</p>
 						</li>
 					</ul>
 				</section>
@@ -927,9 +1047,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L213">src/LinkedList.ts:213</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L290">src/LinkedList.ts:290</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the node at the specified index.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -937,6 +1062,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if the node was removed.  False if the index was out of range.</p>
 						</li>
 					</ul>
 				</section>
@@ -950,10 +1076,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L195">src/LinkedList.ts:195</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L261">src/LinkedList.ts:261</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the first node.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if the node was removed.  False if the list is empty.</p>
 						</li>
 					</ul>
 				</section>
@@ -967,10 +1099,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L208">src/LinkedList.ts:208</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L280">src/LinkedList.ts:280</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the last node.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if the node was removed.  False if the list is empty.</p>
 						</li>
 					</ul>
 				</section>
@@ -984,9 +1122,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L219">src/LinkedList.ts:219</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L300">src/LinkedList.ts:300</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the node specified.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -994,6 +1137,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if the node was removed.  False if not found (already removed).</p>
 						</li>
 					</ul>
 				</section>
@@ -1007,16 +1151,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L146">src/LinkedList.ts:146</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L176">src/LinkedList.ts:176</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Iterates the list and finds the first node that matches the provided value and removes it.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>entry: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value to remove.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if found and removes, otherwise false.</p>
 						</li>
 					</ul>
 				</section>
@@ -1030,10 +1183,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L189">src/LinkedList.ts:189</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L251">src/LinkedList.ts:251</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the first node and returns its value.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+							<p>The value of the first node or undefined if the list is empty.</p>
 						</li>
 					</ul>
 				</section>
@@ -1047,10 +1206,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/d6a5f46/src/LinkedList.ts#L202">src/LinkedList.ts:202</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/31a01f5/src/LinkedList.ts#L270">src/LinkedList.ts:270</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the last node and returns its value.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+							<p>The value of the last node or undefined if the list is empty.</p>
 						</li>
 					</ul>
 				</section>
@@ -1065,7 +1230,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_linkedlist_.linkedlist.html">LinkedList</a>.<a href="_linkedlist_.linkedlist.html#toarray">toArray</a></p>
 								<ul>
-									<li>Defined in node_modules/@tsdotnet/collection-base/dist/IterableCollectionBase.d.ts:31</li>
+									<li>Defined in node_modules/@tsdotnet/collection-base/dist/IterableCollectionBase.d.ts:32</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1097,7 +1262,7 @@
 					<li class="current tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="_linkedlist_.linkedlist.html" class="tsd-kind-icon">Linked<wbr>List</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-protected">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_linkedlist_.linkedlist.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
@@ -1190,6 +1355,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_linkedlist_.linkedlist.html#getvalueat" class="tsd-kind-icon">get<wbr>Value<wbr>At</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_linkedlist_.linkedlist.html#incrementversion" class="tsd-kind-icon">increment<wbr>Version</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_linkedlist_.linkedlist.html#remove" class="tsd-kind-icon">remove</a>
 							</li>
@@ -1235,6 +1403,7 @@
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
