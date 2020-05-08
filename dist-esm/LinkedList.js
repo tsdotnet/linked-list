@@ -62,91 +62,195 @@ export default class LinkedList extends CollectionBase {
         if (initialValues)
             this._addEntries(initialValues);
     }
+    /**
+     * Returns the first node or undefined if the list is empty.
+     */
     get first() {
         return ensureExternal(this._listInternal.first, this);
     }
+    /**
+     * Returns the first value or undefined if the list is empty.
+     */
     get firstValue() {
         var _a;
         return (_a = this._listInternal.first) === null || _a === void 0 ? void 0 : _a.value;
     }
+    /**
+     * Returns the last node or undefined if the list is empty.
+     */
     get last() {
         return ensureExternal(this._listInternal.last, this);
     }
+    /**
+     * Returns the last value or undefined if the list is empty.
+     */
     get lastValue() {
         var _a;
         return (_a = this._listInternal.last) === null || _a === void 0 ? void 0 : _a.value;
     }
-    *_getIterator() {
-        for (const n of this._listInternal)
-            yield n.value;
+    /**
+     * The version number used to track changes.
+     * @returns {number}
+     */
+    get version() {
+        return this._listInternal.version;
     }
+    /**
+     * Iterates the list and finds the first node that matches the provided value and removes it.
+     * @param entry The value to remove.
+     * @return {boolean} True if found and removes, otherwise false.
+     */
     removeOnce(entry) {
         return this.remove(entry, 1) !== 0;
     }
-    // #endregion
+    /**
+     * Iterates the list returns the value of the node at the index requested.
+     * Returns undefined if the index is out of range.
+     * @param index
+     * @returns The value at the index requested or undefined.
+     */
     getValueAt(index) {
         var _a;
         return (_a = this._listInternal.getNodeAt(index)) === null || _a === void 0 ? void 0 : _a.value;
     }
-    // #endregion
+    /**
+     * Iterates the list returns the the node at the index requested.
+     * Returns undefined if the index is out of range.
+     * @param index
+     * @returns The node at the index requested or undefined.
+     */
     getNodeAt(index) {
         return ensureExternal(this._listInternal.getNodeAt(index), this);
     }
+    /**
+     * Iterates the list returns the the first node that matches the value specified.
+     * Returns undefined if not found.
+     * @param entry
+     * @returns The node matching the entry or undefined if not found
+     */
     find(entry) {
         return ensureExternal(this._findFirst(entry), this);
     }
+    /**
+     * Iterates the list in reverse returns the the first node that matches the value specified.
+     * Returns undefined if not found.
+     * @param entry
+     * @returns The node matching the entry or undefined if not found
+     */
     findLast(entry) {
         const li = this._listInternal;
         return li && ensureExternal(this._findLast(entry), this);
     }
+    /**
+     * Adds to specified entry to the beginning of the list.
+     * @param entry
+     * @return {this}
+     */
     addFirst(entry) {
         this._listInternal.addNodeBefore(new InternalNode(entry));
         return this;
     }
+    /**
+     * Adds to specified entry to the end of the list.
+     * @param entry
+     * @return {this}
+     */
     addLast(entry) {
         return this.add(entry);
     }
+    /**
+     * Removes the first node and returns its value.
+     * @return The value of the first node or undefined if the list is empty.
+     */
     takeFirstValue() {
         const n = this._listInternal.first;
         return this._removeNodeInternal(n) ? n === null || n === void 0 ? void 0 : n.value : undefined;
     }
+    /**
+     * Removes the first node.
+     * @return True if the node was removed.  False if the list is empty.
+     */
     removeFirst() {
         return this._removeNodeInternal(this._listInternal.first);
     }
-    // get methods are available for convenience but is an n*index operation.
+    /**
+     * Removes the last node and returns its value.
+     * @return The value of the last node or undefined if the list is empty.
+     */
     takeLastValue() {
         const n = this._listInternal.last;
         return this._removeNodeInternal(n) ? n === null || n === void 0 ? void 0 : n.value : undefined;
     }
+    /**
+     * Removes the last node.
+     * @return True if the node was removed.  False if the list is empty.
+     */
     removeLast() {
         return this._removeNodeInternal(this._listInternal.last);
     }
+    /**
+     * Removes the node at the specified index.
+     * @param {number} index
+     * @return {boolean} True if the node was removed.  False if the index was out of range.
+     */
     removeAt(index) {
         return this._removeNodeInternal(this._listInternal.getNodeAt(index));
     }
-    // Returns true if successful and false if not found (already removed).
+    /**
+     * Removes the node specified.
+     * @param {number} node
+     * @return {boolean} True if the node was removed.  False if not found (already removed).
+     */
     removeNode(node) {
         return this._removeNodeInternal(getInternal(node, this));
     }
+    /**
+     * Adds a entry before the specified node.
+     * @param {LinkedListNode} before The node to follow the entry.
+     * @param entry The value to insert before the node.
+     * @return {this}
+     */
     addBefore(before, entry) {
         this._listInternal.addNodeBefore(new InternalNode(entry), getInternal(before, this));
         return this;
     }
+    /**
+     * Adds a entry after the specified node.
+     * @param {LinkedListNode} after The node to precede the entry.
+     * @param entry The value to insert after the node.
+     * @return {this}
+     */
     addAfter(after, entry) {
         this._listInternal.addNodeAfter(new InternalNode(entry), getInternal(after, this));
         return this;
     }
-    get version() {
-        return this._listInternal.version;
-    }
+    /**
+     * Increments the collection version.
+     * Useful for tracking changes.
+     * @return {number} The new version.
+     */
     incrementVersion() {
         return this._listInternal.incrementVersion();
     }
+    /**
+     * Throws if the provided version does not match the current one.
+     * @param {number} version
+     * @returns {boolean}
+     */
     assertVersion(version) {
         return this._listInternal.assertVersion(version);
     }
+    /**
+     * Gets the number of nodes in the list.
+     * @return {number}
+     */
     getCount() {
         return this._listInternal.unsafeCount;
+    }
+    *_getIterator() {
+        for (const n of this._listInternal) {
+            yield n.value;
+        }
     }
     _addInternal(entry) {
         this._listInternal.addNode(new InternalNode(entry));
