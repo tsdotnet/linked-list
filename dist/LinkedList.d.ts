@@ -22,6 +22,9 @@ export interface LinkedListNode<T> extends LinkedNodeWithValue<T> {
     addAfter(entry: T): void;
     remove(): void;
 }
+/**
+ * A doubly (bidirectional) linked list.  Acts as a safe, value focused wrapper for a [linked-node-list](https://github.com/tsdotnet/linked-node-list).
+ */
 export default class LinkedList<T> extends CollectionBase<T> {
     private readonly _listInternal;
     constructor(initialValues?: Iterable<T> | null, equalityComparer?: EqualityComparison<T>);

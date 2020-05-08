@@ -58,6 +58,9 @@ function detachExternal(node) {
         node.external = undefined;
     }
 }
+/**
+ * A doubly (bidirectional) linked list.  Acts as a safe, value focused wrapper for a [linked-node-list](https://github.com/tsdotnet/linked-node-list).
+ */
 class LinkedList extends CollectionBase_1.default {
     constructor(initialValues, equalityComparer = compare_1.areEqual) {
         super(equalityComparer);

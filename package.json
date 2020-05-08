@@ -1,7 +1,7 @@
 {
   "name": "@tsdotnet/linked-list",
   "version": "1.0.1",
-  "description": "",
+  "description": "A doubly (bidirectional) linked list.  Acts as a safe, value focused wrapper for a linked-node-list.",
   "author": "electricessence",
   "license": "MIT",
   "types": "dist/LinkedList.d.ts",
@@ -52,6 +52,6 @@
     "@tsdotnet/collection-base": "^1.0.9",
     "@tsdotnet/compare": "^1.0.12",
     "@tsdotnet/exceptions": "^1.0.12",
-    "@tsdotnet/linked-node-list": "^1.2.2"
+    "@tsdotnet/linked-node-list": "^1.2.4"
   }
 }

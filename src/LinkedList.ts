@@ -114,6 +114,9 @@ function detachExternal (node: InternalNode<any>): void
 	}
 }
 
+/**
+ * A doubly (bidirectional) linked list.  Acts as a safe, value focused wrapper for a [linked-node-list](https://github.com/tsdotnet/linked-node-list).
+ */
 export default class LinkedList<T>
 	extends CollectionBase<T>
 {
