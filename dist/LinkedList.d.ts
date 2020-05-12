@@ -1,7 +1,7 @@
 /*!
  * @author electricessence / https://github.com/electricessence/
  * Based Upon: http://msdn.microsoft.com/en-us/library/he2s3bh7%28v=vs.110%29.aspx
- * Licensing: MIT https://github.com/electricessence/TypeScript.NET-Core/blob/master/LICENSE.md
+ * Licensing: MIT
  */
 import { LinkedNodeWithValue } from '@tsdotnet/linked-node-list';
 import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
