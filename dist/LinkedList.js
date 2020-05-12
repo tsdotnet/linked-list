@@ -10,7 +10,7 @@ const linked_node_list_1 = require("@tsdotnet/linked-node-list");
 const InvalidOperationException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/InvalidOperationException"));
 const ArgumentNullException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/ArgumentNullException"));
 const CollectionBase_1 = tslib_1.__importDefault(require("@tsdotnet/collection-base/dist/CollectionBase"));
-const compare_1 = require("@tsdotnet/compare");
+const areEqual_1 = tslib_1.__importDefault(require("@tsdotnet/compare/dist/areEqual"));
 /*
  * An internal node is used to manage the order without exposing underlying link chain to the consumer.
  */
@@ -62,7 +62,7 @@ function detachExternal(node) {
  * A doubly (bidirectional) linked list.  Acts as a safe, value focused wrapper for a [linked-node-list](https://github.com/tsdotnet/linked-node-list).
  */
 class LinkedList extends CollectionBase_1.default {
-    constructor(initialValues, equalityComparer = compare_1.areEqual) {
+    constructor(initialValues, equalityComparer = areEqual_1.default) {
         super(equalityComparer);
         this._listInternal = new linked_node_list_1.LinkedNodeList();
         if (initialValues)

@@ -13,7 +13,8 @@ import {
 import InvalidOperationException from '@tsdotnet/exceptions/dist/InvalidOperationException';
 import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
 import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
-import {areEqual, EqualityComparison} from '@tsdotnet/compare';
+import {EqualityComparison} from '@tsdotnet/compare/dist/Comparable';
+import areEqual from '@tsdotnet/compare/dist/areEqual';
 
 
 /*****************************

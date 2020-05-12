@@ -7,7 +7,7 @@ import { LinkedNodeList } from '@tsdotnet/linked-node-list';
 import InvalidOperationException from '@tsdotnet/exceptions/dist/InvalidOperationException';
 import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
 import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
-import { areEqual } from '@tsdotnet/compare';
+import areEqual from '@tsdotnet/compare/dist/areEqual';
 /*
  * An internal node is used to manage the order without exposing underlying link chain to the consumer.
  */

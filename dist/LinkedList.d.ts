@@ -5,7 +5,7 @@
  */
 import { LinkedNodeWithValue } from '@tsdotnet/linked-node-list';
 import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
-import { EqualityComparison } from '@tsdotnet/compare';
+import { EqualityComparison } from '@tsdotnet/compare/dist/Comparable';
 /*****************************
  * IMPORTANT NOTES ABOUT PERFORMANCE:
  * http://jsperf.com/simulating-a-queue
