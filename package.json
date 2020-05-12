@@ -17,11 +17,11 @@
   "scripts": {
     "build:dist": "rimraf dist/* && copyfiles -u 1 src/**/*.d.ts dist && tsc",
     "build:dist-esm": "rimraf dist-esm/* && tsc -p tsconfig.esm.json",
-    "build": "npm install && run-p build:*",
+    "build": "npm i && run-p build:*",
     "bump": "npm run precommit && npm version patch",
     "docs": "rimraf docs/* && rimraf docs/.nojekyll && typedoc --options typedoc.json --readme none && node ./.build/create-nojekyll.js",
     "lint": "eslint src/**/*.ts",
-    "precommit": "npm prune && npm install && run-p lint test && run-p build:* && npm run validate",
+    "precommit": "npm i && run-p lint test && run-p build:* && npm run validate",
     "prepublishOnly": "npm run build && run-p validate test",
     "preversion": "run-p lint test",
     "postversion": "git push && git push --tags && npm run docs && git commit -m \"Updated docs.\" docs && git push",
