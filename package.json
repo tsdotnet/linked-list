@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/tsdotnet/linked-list#readme",
   "devDependencies": {
-    "@tsdotnet/array-compare": "^1.0.6",
+    "@tsdotnet/array-compare": "^1.0.7",
     "@types/jasmine": "^3.5.10",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
@@ -55,9 +55,9 @@
     "typescript": "^3.9.2"
   },
   "dependencies": {
-    "@tsdotnet/collection-base": "^1.0.10",
-    "@tsdotnet/compare": "^1.3.1",
-    "@tsdotnet/exceptions": "^1.0.12",
-    "@tsdotnet/linked-node-list": "^1.2.6"
+    "@tsdotnet/collection-base": "^1.0.11",
+    "@tsdotnet/compare": "^1.3.2",
+    "@tsdotnet/exceptions": "^1.0.13",
+    "@tsdotnet/linked-node-list": "^1.2.7"
   }
 }
