@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>LinkedListNode | @tsdotnet/linked-list - v1.0.7</title>
-	<meta name="description" content="Documentation for @tsdotnet/linked-list - v1.0.7">
+	<title>LinkedListNode | @tsdotnet/linked-list - v1.1.0</title>
+	<meta name="description" content="Documentation for @tsdotnet/linked-list - v1.1.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@tsdotnet/linked-list - v1.0.7</a>
+					<a href="../index.html" class="title">@tsdotnet/linked-list - v1.1.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -129,9 +129,14 @@
 					<div class="tsd-signature tsd-kind-icon">list<span class="tsd-signature-symbol">:</span> <a href="../classes/_linkedlist_.linkedlist.html" class="tsd-signature-type">LinkedList</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/cb6450b/src/LinkedList.ts#L35">src/LinkedList.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/dac96b9/src/LinkedList.ts#L47">src/LinkedList.ts:47</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The list this node belongs to.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="next" class="tsd-anchor"></a>
@@ -140,9 +145,15 @@
 					<aside class="tsd-sources">
 						<p>Overrides LinkedNode.next</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/cb6450b/src/LinkedList.ts#L33">src/LinkedList.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/dac96b9/src/LinkedList.ts#L42">src/LinkedList.ts:42</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The node before this one.  Undefined if this is the first node.
+							Throws if this node no longer belongs to a list (removed).</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="previous" class="tsd-anchor"></a>
@@ -151,9 +162,15 @@
 					<aside class="tsd-sources">
 						<p>Overrides LinkedNode.previous</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/cb6450b/src/LinkedList.ts#L32">src/LinkedList.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/dac96b9/src/LinkedList.ts#L36">src/LinkedList.ts:36</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The node before this one.  Undefined if this is the first node.
+							Throws if this node no longer belongs to a list (removed).</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="value" class="tsd-anchor"></a>
@@ -173,22 +190,30 @@
 					<a name="addafter" class="tsd-anchor"></a>
 					<h3>add<wbr>After</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>After<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>After<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/cb6450b/src/LinkedList.ts#L39">src/LinkedList.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/dac96b9/src/LinkedList.ts#L61">src/LinkedList.ts:61</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds a item after this node.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>entry: <span class="tsd-signature-type">T</span></h5>
+									<h5>item: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The item to insert after this one.</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -196,22 +221,30 @@
 					<a name="addbefore" class="tsd-anchor"></a>
 					<h3>add<wbr>Before</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Before<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Before<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/cb6450b/src/LinkedList.ts#L37">src/LinkedList.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/dac96b9/src/LinkedList.ts#L54">src/LinkedList.ts:54</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds a item before this node.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>entry: <span class="tsd-signature-type">T</span></h5>
+									<h5>item: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The item to insert before this one.</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -225,9 +258,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/cb6450b/src/LinkedList.ts#L41">src/LinkedList.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/tsdotnet/linked-list/blob/dac96b9/src/LinkedList.ts#L66">src/LinkedList.ts:66</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes (detaches) this node from its list.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
