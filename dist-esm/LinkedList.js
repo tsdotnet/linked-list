@@ -12,22 +12,13 @@ import areEqual from '@tsdotnet/compare/dist/areEqual';
  * An internal node is used to manage the order without exposing underlying link chain to the consumer.
  */
 class InternalNode {
-    constructor(value, previous, next) {
+    constructor(value) {
         this.value = value;
-        this.previous = previous;
-        this.next = next;
-    }
-    assertDetached() {
-        if (this.next || this.previous)
-            throw new InvalidOperationException('Adding a node that is already placed.');
-        return true;
     }
 }
 function ensureExternal(node, list) {
     if (!node)
         return undefined;
-    if (!list)
-        throw new ArgumentNullException('list');
     let external = node.external;
     if (!external)
         node.external = external = new InternalLinkedListNode(list, node);
@@ -36,8 +27,6 @@ function ensureExternal(node, list) {
 function getInternal(node, list) {
     if (!node)
         throw new ArgumentNullException('node');
-    if (!list)
-        throw new ArgumentNullException('list');
     if (node.list != list)
         throw new InvalidOperationException('Provided node does not belong to this list.');
     const n = node._nodeInternal;
@@ -100,11 +89,11 @@ export default class LinkedList extends CollectionBase {
     }
     /**
      * Iterates the list and finds the first node that matches the provided value and removes it.
-     * @param entry The value to remove.
+     * @param item The value to remove.
      * @return {boolean} True if found and removes, otherwise false.
      */
-    removeOnce(entry) {
-        return this.remove(entry, 1) !== 0;
+    removeOnce(item) {
+        return this.remove(item, 1) !== 0;
     }
     /**
      * Iterates the list returns the value of the node at the index requested.
@@ -128,38 +117,38 @@ export default class LinkedList extends CollectionBase {
     /**
      * Iterates the list returns the the first node that matches the value specified.
      * Returns undefined if not found.
-     * @param entry
-     * @returns The node matching the entry or undefined if not found
+     * @param item
+     * @returns The node matching the item or undefined if not found
      */
-    find(entry) {
-        return ensureExternal(this._findFirst(entry), this);
+    find(item) {
+        return ensureExternal(this._findFirst(item), this);
     }
     /**
      * Iterates the list in reverse returns the the first node that matches the value specified.
      * Returns undefined if not found.
-     * @param entry
-     * @returns The node matching the entry or undefined if not found
+     * @param item
+     * @returns The node matching the item or undefined if not found
      */
-    findLast(entry) {
+    findLast(item) {
         const li = this._listInternal;
-        return li && ensureExternal(this._findLast(entry), this);
+        return li && ensureExternal(this._findLast(item), this);
     }
     /**
-     * Adds to specified entry to the beginning of the list.
-     * @param entry
+     * Adds to specified item to the beginning of the list.
+     * @param item
      * @return {this}
      */
-    addFirst(entry) {
-        this._listInternal.addNodeBefore(new InternalNode(entry));
+    addFirst(item) {
+        this._listInternal.addNodeBefore(new InternalNode(item));
         return this;
     }
     /**
-     * Adds to specified entry to the end of the list.
-     * @param entry
+     * Adds to specified item to the end of the list.
+     * @param item
      * @return {this}
      */
-    addLast(entry) {
-        return this.add(entry);
+    addLast(item) {
+        return this.add(item);
     }
     /**
      * Removes the first node and returns its value.
@@ -208,23 +197,25 @@ export default class LinkedList extends CollectionBase {
         return this._removeNodeInternal(getInternal(node, this));
     }
     /**
-     * Adds a entry before the specified node.
-     * @param {LinkedListNode} before The node to follow the entry.
-     * @param entry The value to insert before the node.
+     * Adds a item before the specified node.
+     * @param {LinkedListNode} before The node to follow the item.
+     * @param item The value to insert before the node.
      * @return {this}
      */
-    addBefore(before, entry) {
-        this._listInternal.addNodeBefore(new InternalNode(entry), getInternal(before, this));
+    addBefore(before, item) {
+        const internal = getInternal(before, this);
+        this._listInternal.addNodeBefore(new InternalNode(item), internal);
         return this;
     }
     /**
-     * Adds a entry after the specified node.
-     * @param {LinkedListNode} after The node to precede the entry.
-     * @param entry The value to insert after the node.
+     * Adds a item after the specified node.
+     * @param {LinkedListNode} after The node to precede the item.
+     * @param item The value to insert after the node.
      * @return {this}
      */
-    addAfter(after, entry) {
-        this._listInternal.addNodeAfter(new InternalNode(entry), getInternal(after, this));
+    addAfter(after, item) {
+        const internal = getInternal(after, this);
+        this._listInternal.addNodeAfter(new InternalNode(item), internal);
         return this;
     }
     /**
@@ -255,15 +246,15 @@ export default class LinkedList extends CollectionBase {
             yield n.value;
         }
     }
-    _addInternal(entry) {
-        this._listInternal.addNode(new InternalNode(entry));
+    _addInternal(item) {
+        this._listInternal.addNode(new InternalNode(item));
         return true;
     }
-    _removeInternal(entry, max = Infinity) {
+    _removeInternal(item, max = Infinity) {
         const equals = this._equalityComparer, list = this._listInternal;
         let removedCount = 0;
         for (const node of list) {
-            if (node && equals(entry, node.value) && this._removeNodeInternal(node))
+            if (node && equals(item, node.value) && this._removeNodeInternal(node))
                 removedCount++;
             if (removedCount >= max)
                 break;
@@ -277,23 +268,23 @@ export default class LinkedList extends CollectionBase {
         }
         return list.clear();
     }
-    _findFirst(entry) {
+    _findFirst(item) {
         //noinspection UnnecessaryLocalVariableJS
         const equals = this._equalityComparer;
         let next = this._listInternal.first;
         while (next) {
-            if (equals(entry, next.value))
+            if (equals(item, next.value))
                 return next;
             next = next.next;
         }
         return undefined;
     }
-    _findLast(entry) {
+    _findLast(item) {
         //noinspection UnnecessaryLocalVariableJS
         const equals = this._equalityComparer;
         let prev = this._listInternal.last;
         while (prev) {
-            if (equals(entry, prev.value))
+            if (equals(item, prev.value))
                 return prev;
             prev = prev.previous;
         }
@@ -332,14 +323,14 @@ class InternalLinkedListNode {
         this.throwIfDetached();
         this._nodeInternal.value = v;
     }
-    addBefore(entry) {
+    addBefore(item) {
         this.throwIfDetached();
-        this._list.addBefore(this, entry);
+        this._list.addBefore(this, item);
         return this;
     }
-    addAfter(entry) {
+    addAfter(item) {
         this.throwIfDetached();
-        this._list.addAfter(this, entry);
+        this._list.addAfter(this, item);
         return this;
     }
     remove() {

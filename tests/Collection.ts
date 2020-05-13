@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import {expect} from 'chai';
 import {Collection as ICollection} from '@tsdotnet/collection-base';
 import NotImplementedException from '@tsdotnet/exceptions';
 
@@ -18,7 +19,7 @@ export function General<T> (
 
 function assertIsNumber (value: any, message: string = 'should be a real number')
 {
-	expect(!isNaN(value)).withContext(message).toBeTrue();
+	expect(!isNaN(value), message).to.be.true;
 }
 
 function assertAdding<T> (c: ICollection<T>, a: T[])
@@ -30,12 +31,8 @@ function assertAdding<T> (c: ICollection<T>, a: T[])
 			assertIsNumber(count = c.count, 'before adding');
 			c.add(v);
 			assertIsNumber(c.count, 'after adding');
-			expect(c.count)
-				.withContext('\'count\' should have incremented')
-				.toBe(count + 1);
-			expect(c.contains(v))
-				.withContext('\'value\' must exist after adding')
-				.toBeTrue();
+			expect(c.count, '\'count\' should have incremented').equal(count + 1);
+			expect(c.contains(v), '\'value\' must exist after adding').to.be.true;
 		}
 	});
 }
@@ -51,13 +48,11 @@ function assertCopyToClear<T> (c: ICollection<T>)
 
 		c.copyTo(a);
 		assertIsNumber(c.count, 'count');
-		expect(a.length)
-			.withContext('An empty array\'s length should match the count if copied to.')
-			.toBe(count);
+		expect(a.length, 'An empty array\'s length should match the count if copied to.')
+			.equal(count);
 		c.clear();
-		expect(c.count)
-			.withContext('A collection\'s count should be zero after calling \'.clear()\'.')
-			.toBe(0);
+		expect(c.count, 'A collection\'s count should be zero after calling \'.clear()\'.')
+			.equal(0);
 
 		// Restore contents.
 		for(const v of a) c.add(v);
@@ -66,23 +61,19 @@ function assertCopyToClear<T> (c: ICollection<T>)
 		const b = new Array<T>(count + extraSize);
 
 		c.copyTo(b, 1);
-		expect(b.length)
-			.withContext('An array\'s length should be equal to it\'s original length if the count added does not exceed the length.')
-			.toBe(count + extraSize);
+		expect(b.length, 'An array\'s length should be equal to it\'s original length if the count added does not exceed the length.')
+			.equal(count + extraSize);
 		c.copyTo(b, count + extraSize - 1);
-		expect(b.length)
-			.withContext('An array\'s length should be equal to index+count if the count exceeds the length.')
-			.toBe(2*count + extraSize - 1);
+		expect(b.length, 'An array\'s length should be equal to index+count if the count exceeds the length.')
+			.equal(2*count + extraSize - 1);
 		c.clear();
-		expect(c.count)
-			.withContext('A collection\'s count should be zero after calling \'.clear()\'.')
-			.toBe(0);
+		expect(c.count, 'A collection\'s count should be zero after calling \'.clear()\'.')
+			.equal(0);
 
 		// Restore contents.
 		for(const v of a) c.add(v);
-		expect(c.count)
-			.withContext('A collection\'s count should be equal to the number of items added.')
-			.toBe(a.length);
+		expect(c.count, 'A collection\'s count should be equal to the number of items added.')
+			.equal(a.length);
 	});
 
 }
@@ -105,12 +96,10 @@ function assertRemoving<T> (c: ICollection<T>)
 			{
 				count -= c.remove(v); // More than one instance can exist and it should remove both.
 				assertIsNumber(c.count, 'after removing');
-				expect(c.count)
-					.withContext('\'count\' should increment after removing.')
-					.toBe(count);
-				expect(c.contains(v))
-					.withContext('\'value\' must not exist after removing.')
-					.toBeFalse();
+				expect(c.count, '\'count\' should increment after removing.')
+					.equal(count);
+				expect(c.contains(v), '\'value\' must not exist after removing.')
+					.to.be.false;
 			}
 		}
 		catch(ex)
@@ -145,7 +134,7 @@ export function Collection<T> (
 		assertCopyToClear(collection);
 		assertRemoving(collection);
 		it('equality comparison should be strict', () => {
-			expect(collection.contains(null as any)).toBeFalse();
+			expect(collection.contains(null as any)).to.be.false;
 		});
 		it('should throw if modified while iterating.', () => {
 			expect(() => {
@@ -153,7 +142,7 @@ export function Collection<T> (
 				{
 					collection.add(e);
 				}
-			}).toThrow();
+			}).to.throw();
 		});
 	});
 

@@ -15,11 +15,35 @@ import { EqualityComparison } from '@tsdotnet/compare/dist/Comparable';
  * http://stackoverflow.com/questions/166884/array-versus-linked-list
  *****************************/
 export interface LinkedListNode<T> extends LinkedNodeWithValue<T> {
+    /**
+     * The node before this one.  Undefined if this is the first node.
+     * Throws if this node no longer belongs to a list (removed).
+     */
     previous: LinkedListNode<T> | undefined;
+    /**
+     * The node before this one.  Undefined if this is the first node.
+     * Throws if this node no longer belongs to a list (removed).
+     */
     next: LinkedListNode<T> | undefined;
+    /**
+     * The list this node belongs to.
+     */
     list: LinkedList<T>;
-    addBefore(entry: T): void;
-    addAfter(entry: T): void;
+    /**
+     * Adds a item before this node.
+     * @param item The item to insert before this one.
+     * @return {this}
+     */
+    addBefore(item: T): this;
+    /**
+     * Adds a item after this node.
+     * @param item The item to insert after this one.
+     * @return {this}
+     */
+    addAfter(item: T): this;
+    /**
+     * Removes (detaches) this node from its list.
+     */
     remove(): void;
 }
 /**
@@ -51,10 +75,10 @@ export default class LinkedList<T> extends CollectionBase<T> {
     get version(): number;
     /**
      * Iterates the list and finds the first node that matches the provided value and removes it.
-     * @param entry The value to remove.
+     * @param item The value to remove.
      * @return {boolean} True if found and removes, otherwise false.
      */
-    removeOnce(entry: T): boolean;
+    removeOnce(item: T): boolean;
     /**
      * Iterates the list returns the value of the node at the index requested.
      * Returns undefined if the index is out of range.
@@ -72,29 +96,29 @@ export default class LinkedList<T> extends CollectionBase<T> {
     /**
      * Iterates the list returns the the first node that matches the value specified.
      * Returns undefined if not found.
-     * @param entry
-     * @returns The node matching the entry or undefined if not found
+     * @param item
+     * @returns The node matching the item or undefined if not found
      */
-    find(entry: T): LinkedListNode<T> | undefined;
+    find(item: T): LinkedListNode<T> | undefined;
     /**
      * Iterates the list in reverse returns the the first node that matches the value specified.
      * Returns undefined if not found.
-     * @param entry
-     * @returns The node matching the entry or undefined if not found
+     * @param item
+     * @returns The node matching the item or undefined if not found
      */
-    findLast(entry: T): LinkedListNode<T> | undefined;
+    findLast(item: T): LinkedListNode<T> | undefined;
     /**
-     * Adds to specified entry to the beginning of the list.
-     * @param entry
+     * Adds to specified item to the beginning of the list.
+     * @param item
      * @return {this}
      */
-    addFirst(entry: T): this;
+    addFirst(item: T): this;
     /**
-     * Adds to specified entry to the end of the list.
-     * @param entry
+     * Adds to specified item to the end of the list.
+     * @param item
      * @return {this}
      */
-    addLast(entry: T): this;
+    addLast(item: T): this;
     /**
      * Removes the first node and returns its value.
      * @return The value of the first node or undefined if the list is empty.
@@ -128,19 +152,19 @@ export default class LinkedList<T> extends CollectionBase<T> {
      */
     removeNode(node: LinkedListNode<T>): boolean;
     /**
-     * Adds a entry before the specified node.
-     * @param {LinkedListNode} before The node to follow the entry.
-     * @param entry The value to insert before the node.
+     * Adds a item before the specified node.
+     * @param {LinkedListNode} before The node to follow the item.
+     * @param item The value to insert before the node.
      * @return {this}
      */
-    addBefore(before: LinkedListNode<T>, entry: T): this;
+    addBefore(before: LinkedListNode<T>, item: T): this;
     /**
-     * Adds a entry after the specified node.
-     * @param {LinkedListNode} after The node to precede the entry.
-     * @param entry The value to insert after the node.
+     * Adds a item after the specified node.
+     * @param {LinkedListNode} after The node to precede the item.
+     * @param item The value to insert after the node.
      * @return {this}
      */
-    addAfter(after: LinkedListNode<T>, entry: T): this;
+    addAfter(after: LinkedListNode<T>, item: T): this;
     /**
      * Increments the collection version.
      * Useful for tracking changes.
@@ -159,8 +183,8 @@ export default class LinkedList<T> extends CollectionBase<T> {
      */
     getCount(): number;
     protected _getIterator(): Iterator<T>;
-    protected _addInternal(entry: T): boolean;
-    protected _removeInternal(entry: T, max?: number): number;
+    protected _addInternal(item: T): boolean;
+    protected _removeInternal(item: T, max?: number): number;
     protected _clearInternal(): number;
     private _findFirst;
     private _findLast;

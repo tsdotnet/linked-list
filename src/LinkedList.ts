@@ -29,15 +29,40 @@ import areEqual from '@tsdotnet/compare/dist/areEqual';
 export interface LinkedListNode<T>
 	extends LinkedNodeWithValue<T>
 {
+	/**
+	 * The node before this one.  Undefined if this is the first node.
+	 * Throws if this node no longer belongs to a list (removed).
+	 */
 	previous: LinkedListNode<T> | undefined;
+
+	/**
+	 * The node before this one.  Undefined if this is the first node.
+	 * Throws if this node no longer belongs to a list (removed).
+	 */
 	next: LinkedListNode<T> | undefined;
 
+	/**
+	 * The list this node belongs to.
+	 */
 	list: LinkedList<T>;
 
-	addBefore (entry: T): void;
+	/**
+	 * Adds a item before this node.
+	 * @param item The item to insert before this one.
+	 * @return {this}
+	 */
+	addBefore (item: T): this;
 
-	addAfter (entry: T): void;
+	/**
+	 * Adds a item after this node.
+	 * @param item The item to insert after this one.
+	 * @return {this}
+	 */
+	addAfter (item: T): this;
 
+	/**
+	 * Removes (detaches) this node from its list.
+	 */
 	remove (): void;
 }
 
@@ -49,21 +74,12 @@ class InternalNode<T>
 {
 	external?: LinkedListNode<T>;
 
-	constructor (
-		public value: T,
-		public previous?: InternalNode<T>,
-		public next?: InternalNode<T>)
+	previous?: InternalNode<T>;
+	next?: InternalNode<T>;
+
+	constructor (public value: T)
 	{
 	}
-
-	assertDetached (): true | never
-	{
-		if(this.next || this.previous)
-			throw new InvalidOperationException(
-				'Adding a node that is already placed.');
-		return true;
-	}
-
 }
 
 function ensureExternal<T> (
@@ -72,8 +88,6 @@ function ensureExternal<T> (
 {
 	if(!node)
 		return undefined;
-	if(!list)
-		throw new ArgumentNullException('list');
 
 	let external = node.external;
 	if(!external)
@@ -86,8 +100,6 @@ function getInternal<T> (node: LinkedListNode<T>, list: LinkedList<T>): Internal
 {
 	if(!node)
 		throw new ArgumentNullException('node');
-	if(!list)
-		throw new ArgumentNullException('list');
 
 	if(node.list!=list)
 		throw new InvalidOperationException(
@@ -174,12 +186,12 @@ export default class LinkedList<T>
 
 	/**
 	 * Iterates the list and finds the first node that matches the provided value and removes it.
-	 * @param entry The value to remove.
+	 * @param item The value to remove.
 	 * @return {boolean} True if found and removes, otherwise false.
 	 */
-	removeOnce (entry: T): boolean
+	removeOnce (item: T): boolean
 	{
-		return this.remove(entry, 1)!==0;
+		return this.remove(item, 1)!==0;
 	}
 
 	/**
@@ -207,45 +219,45 @@ export default class LinkedList<T>
 	/**
 	 * Iterates the list returns the the first node that matches the value specified.
 	 * Returns undefined if not found.
-	 * @param entry
-	 * @returns The node matching the entry or undefined if not found
+	 * @param item
+	 * @returns The node matching the item or undefined if not found
 	 */
-	find (entry: T): LinkedListNode<T> | undefined
+	find (item: T): LinkedListNode<T> | undefined
 	{
-		return ensureExternal(this._findFirst(entry), this);
+		return ensureExternal(this._findFirst(item), this);
 	}
 
 	/**
 	 * Iterates the list in reverse returns the the first node that matches the value specified.
 	 * Returns undefined if not found.
-	 * @param entry
-	 * @returns The node matching the entry or undefined if not found
+	 * @param item
+	 * @returns The node matching the item or undefined if not found
 	 */
-	findLast (entry: T): LinkedListNode<T> | undefined
+	findLast (item: T): LinkedListNode<T> | undefined
 	{
 		const li = this._listInternal;
-		return li && ensureExternal(this._findLast(entry), this);
+		return li && ensureExternal(this._findLast(item), this);
 	}
 
 	/**
-	 * Adds to specified entry to the beginning of the list.
-	 * @param entry
+	 * Adds to specified item to the beginning of the list.
+	 * @param item
 	 * @return {this}
 	 */
-	addFirst (entry: T): this
+	addFirst (item: T): this
 	{
-		this._listInternal.addNodeBefore(new InternalNode(entry));
+		this._listInternal.addNodeBefore(new InternalNode(item));
 		return this;
 	}
 
 	/**
-	 * Adds to specified entry to the end of the list.
-	 * @param entry
+	 * Adds to specified item to the end of the list.
+	 * @param item
 	 * @return {this}
 	 */
-	addLast (entry: T): this
+	addLast (item: T): this
 	{
-		return this.add(entry);
+		return this.add(item);
 	}
 
 	/**
@@ -307,33 +319,28 @@ export default class LinkedList<T>
 	}
 
 	/**
-	 * Adds a entry before the specified node.
-	 * @param {LinkedListNode} before The node to follow the entry.
-	 * @param entry The value to insert before the node.
+	 * Adds a item before the specified node.
+	 * @param {LinkedListNode} before The node to follow the item.
+	 * @param item The value to insert before the node.
 	 * @return {this}
 	 */
-	addBefore (before: LinkedListNode<T>, entry: T): this
+	addBefore (before: LinkedListNode<T>, item: T): this
 	{
-		this._listInternal.addNodeBefore(
-			new InternalNode(entry),
-			getInternal(before, this)
-		);
+		const internal = getInternal(before, this);
+		this._listInternal.addNodeBefore(new InternalNode(item), internal);
 		return this;
 	}
 
 	/**
-	 * Adds a entry after the specified node.
-	 * @param {LinkedListNode} after The node to precede the entry.
-	 * @param entry The value to insert after the node.
+	 * Adds a item after the specified node.
+	 * @param {LinkedListNode} after The node to precede the item.
+	 * @param item The value to insert after the node.
 	 * @return {this}
 	 */
-	addAfter (after: LinkedListNode<T>, entry: T): this
+	addAfter (after: LinkedListNode<T>, item: T): this
 	{
-		this._listInternal.addNodeAfter(
-			new InternalNode(entry),
-			getInternal(after, this)
-		);
-
+		const internal = getInternal(after, this);
+		this._listInternal.addNodeAfter(new InternalNode(item), internal);
 		return this;
 	}
 
@@ -374,13 +381,13 @@ export default class LinkedList<T>
 		}
 	}
 
-	protected _addInternal (entry: T): boolean
+	protected _addInternal (item: T): boolean
 	{
-		this._listInternal.addNode(new InternalNode(entry));
+		this._listInternal.addNode(new InternalNode(item));
 		return true;
 	}
 
-	protected _removeInternal (entry: T, max: number = Infinity): number
+	protected _removeInternal (item: T, max: number = Infinity): number
 	{
 		const
 			equals = this._equalityComparer,
@@ -389,7 +396,7 @@ export default class LinkedList<T>
 		let removedCount = 0;
 		for(const node of list)
 		{
-			if(node && equals(entry, node.value) && this._removeNodeInternal(node))
+			if(node && equals(item, node.value) && this._removeNodeInternal(node))
 				removedCount++;
 
 			if(removedCount>=max) break;
@@ -408,7 +415,7 @@ export default class LinkedList<T>
 		return list.clear();
 	}
 
-	private _findFirst (entry: T): InternalNode<T> | undefined
+	private _findFirst (item: T): InternalNode<T> | undefined
 	{
 		//noinspection UnnecessaryLocalVariableJS
 		const equals = this._equalityComparer;
@@ -416,14 +423,14 @@ export default class LinkedList<T>
 		let next = this._listInternal.first;
 		while(next)
 		{
-			if(equals(entry, next.value))
+			if(equals(item, next.value))
 				return next;
 			next = next.next;
 		}
 		return undefined;
 	}
 
-	private _findLast (entry: T): InternalNode<T> | undefined
+	private _findLast (item: T): InternalNode<T> | undefined
 	{
 		//noinspection UnnecessaryLocalVariableJS
 		const equals = this._equalityComparer;
@@ -431,7 +438,7 @@ export default class LinkedList<T>
 		let prev = this._listInternal.last;
 		while(prev)
 		{
-			if(equals(entry, prev.value))
+			if(equals(item, prev.value))
 				return prev;
 			prev = prev.previous;
 		}
@@ -489,17 +496,17 @@ class InternalLinkedListNode<T>
 		this._nodeInternal.value = v;
 	}
 
-	addBefore (entry: T): this
+	addBefore (item: T): this
 	{
 		this.throwIfDetached();
-		this._list.addBefore(this, entry);
+		this._list.addBefore(this, item);
 		return this;
 	}
 
-	addAfter (entry: T): this
+	addAfter (item: T): this
 	{
 		this.throwIfDetached();
-		this._list.addAfter(this, entry);
+		this._list.addAfter(this, item);
 		return this;
 	}
 

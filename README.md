@@ -1,6 +1,7 @@
 # ![alt text](https://avatars1.githubusercontent.com/u/64487547?s=30 "tsdotnet") tsdotnet / linked-list
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tsdotnet/linked-list/blob/master/LICENSE)
+![100% code coverage](https://img.shields.io/badge/coverage-100%25-green)
 ![npm-publish](https://github.com/tsdotnet/linked-list/workflows/npm-publish/badge.svg)
 [![npm version](https://img.shields.io/npm/v/@tsdotnet/linked-list.svg?style=flat-square)](https://www.npmjs.com/package/@tsdotnet/linked-list)
 
