@@ -381,6 +381,25 @@ export default class LinkedList<T>
 		}
 	}
 
+	/**
+	 * Iterable for iterating this collection in reverse order.
+	 * @return {Iterable}
+	 */
+	get reversed (): Iterable<T>
+	{
+		// eslint-disable-next-line @typescript-eslint/no-this-alias
+		const _ = this;
+		return {
+			* [Symbol.iterator] (): Iterator<T>
+			{
+				for(const n of _._listInternal.reversed)
+				{
+					yield n.value;
+				}
+			}
+		};
+	}
+
 	protected _addInternal (item: T): boolean
 	{
 		this._listInternal.addNode(new InternalNode(item));

@@ -249,6 +249,21 @@ class LinkedList extends CollectionBase_1.default {
             yield n.value;
         }
     }
+    /**
+     * Iterable for iterating this collection in reverse order.
+     * @return {Iterable}
+     */
+    get reversed() {
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
+        const _ = this;
+        return {
+            *[Symbol.iterator]() {
+                for (const n of _._listInternal.reversed) {
+                    yield n.value;
+                }
+            }
+        };
+    }
     _addInternal(item) {
         this._listInternal.addNode(new InternalNode(item));
         return true;

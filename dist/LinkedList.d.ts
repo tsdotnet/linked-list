@@ -183,6 +183,11 @@ export default class LinkedList<T> extends CollectionBase<T> {
      */
     getCount(): number;
     protected _getIterator(): Iterator<T>;
+    /**
+     * Iterable for iterating this collection in reverse order.
+     * @return {Iterable}
+     */
+    get reversed(): Iterable<T>;
     protected _addInternal(item: T): boolean;
     protected _removeInternal(item: T, max?: number): number;
     protected _clearInternal(): number;
