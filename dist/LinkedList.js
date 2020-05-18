@@ -11,6 +11,7 @@ const InvalidOperationException_1 = tslib_1.__importDefault(require("@tsdotnet/e
 const ArgumentNullException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/ArgumentNullException"));
 const CollectionBase_1 = tslib_1.__importDefault(require("@tsdotnet/collection-base/dist/CollectionBase"));
 const areEqual_1 = tslib_1.__importDefault(require("@tsdotnet/compare/dist/areEqual"));
+const collection_base_1 = require("@tsdotnet/collection-base");
 /*
  * An internal node is used to manage the order without exposing underlying link chain to the consumer.
  */
@@ -256,13 +257,13 @@ class LinkedList extends CollectionBase_1.default {
     get reversed() {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const _ = this;
-        return {
+        return (_._reversed || (_._reversed = Object.freeze(collection_base_1.ExtendedIterable.create({
             *[Symbol.iterator]() {
                 for (const n of _._listInternal.reversed) {
                     yield n.value;
                 }
             }
-        };
+        }))));
     }
     _addInternal(item) {
         this._listInternal.addNode(new InternalNode(item));

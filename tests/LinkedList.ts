@@ -189,5 +189,19 @@ describe('LinkedList', () => {
 
 	});
 
+	describe('.reversed', () => {
+		it('should iterate in reverse', () => {
+			const list = new LinkedList<string>();
+			list.add('a').add('b');
+			const a: string[] = [];
+			for(const n of list.reversed)
+			{
+				a.push(n);
+			}
+			expect(a[0]).equal('b');
+			expect(a[1]).equal('a');
+		});
+	});
+
 });
 

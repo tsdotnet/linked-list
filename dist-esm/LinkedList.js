@@ -8,6 +8,7 @@ import InvalidOperationException from '@tsdotnet/exceptions/dist/InvalidOperatio
 import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
 import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
 import areEqual from '@tsdotnet/compare/dist/areEqual';
+import { ExtendedIterable } from '@tsdotnet/collection-base';
 /*
  * An internal node is used to manage the order without exposing underlying link chain to the consumer.
  */
@@ -253,13 +254,13 @@ export default class LinkedList extends CollectionBase {
     get reversed() {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const _ = this;
-        return {
+        return (_._reversed || (_._reversed = Object.freeze(ExtendedIterable.create({
             *[Symbol.iterator]() {
                 for (const n of _._listInternal.reversed) {
                     yield n.value;
                 }
             }
-        };
+        }))));
     }
     _addInternal(item) {
         this._listInternal.addNode(new InternalNode(item));

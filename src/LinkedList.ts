@@ -15,6 +15,7 @@ import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullExcepti
 import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
 import {EqualityComparison} from '@tsdotnet/compare/dist/Comparable';
 import areEqual from '@tsdotnet/compare/dist/areEqual';
+import {ExtendedIterable} from '@tsdotnet/collection-base';
 
 
 /*****************************
@@ -381,15 +382,17 @@ export default class LinkedList<T>
 		}
 	}
 
+	private _reversed?: Readonly<ExtendedIterable<T>>;
+
 	/**
 	 * Iterable for iterating this collection in reverse order.
 	 * @return {Iterable}
 	 */
-	get reversed (): Iterable<T>
+	get reversed (): ExtendedIterable<T>
 	{
 		// eslint-disable-next-line @typescript-eslint/no-this-alias
 		const _ = this;
-		return {
+		return (_._reversed || (_._reversed = Object.freeze(ExtendedIterable.create({
 			* [Symbol.iterator] (): Iterator<T>
 			{
 				for(const n of _._listInternal.reversed)
@@ -397,7 +400,7 @@ export default class LinkedList<T>
 					yield n.value;
 				}
 			}
-		};
+		})))) as ExtendedIterable<T>;
 	}
 
 	protected _addInternal (item: T): boolean

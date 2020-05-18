@@ -6,6 +6,7 @@
 import { LinkedNodeWithValue } from '@tsdotnet/linked-node-list';
 import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
 import { EqualityComparison } from '@tsdotnet/compare/dist/Comparable';
+import { ExtendedIterable } from '@tsdotnet/collection-base';
 /*****************************
  * IMPORTANT NOTES ABOUT PERFORMANCE:
  * http://jsperf.com/simulating-a-queue
@@ -183,11 +184,12 @@ export default class LinkedList<T> extends CollectionBase<T> {
      */
     getCount(): number;
     protected _getIterator(): Iterator<T>;
+    private _reversed?;
     /**
      * Iterable for iterating this collection in reverse order.
      * @return {Iterable}
      */
-    get reversed(): Iterable<T>;
+    get reversed(): ExtendedIterable<T>;
     protected _addInternal(item: T): boolean;
     protected _removeInternal(item: T, max?: number): number;
     protected _clearInternal(): number;
