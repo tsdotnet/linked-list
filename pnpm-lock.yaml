@@ -1,8 +1,8 @@
 dependencies:
-  '@tsdotnet/collection-base': 2.0.4
+  '@tsdotnet/collection-base': 2.0.6
   '@tsdotnet/compare': 1.3.13
   '@tsdotnet/exceptions': 1.0.16
-  '@tsdotnet/linked-node-list': 1.3.11
+  '@tsdotnet/linked-node-list': 1.3.13
   tslib: 2.0.0
 devDependencies:
   '@types/chai': 4.2.11
@@ -206,7 +206,7 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
-  /@tsdotnet/collection-base/2.0.4:
+  /@tsdotnet/collection-base/2.0.6:
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.4
       '@tsdotnet/compare': 1.3.13
@@ -214,7 +214,7 @@ packages:
       tslib: 2.0.0
     dev: false
     resolution:
-      integrity: sha512-LtF0n47dztwFAKRznTCoWwa0dFWThVvQsYRghdX/lgIbw6b/tbv85dKgYGEWc/FQrg5npHbYkBpP/9YFQZBoWw==
+      integrity: sha512-iSAPS8Wsk3/a11U2DX6iMuCCtB3IpfmFvoI3yjH7l7rDnqD0Liyq3bSSZNAqlqdvEulTi9yJFZjDX1THT//Vkw==
   /@tsdotnet/common-interfaces/1.0.4:
     dev: false
     resolution:
@@ -233,15 +233,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-uJwSxVgTVmNOSvit1TFLgFass/VGEyEDRx8zvgtC3YaAj/KCQi1wE/uchBIFaXCWYSmOELHZjDZRv4zYguVqTQ==
-  /@tsdotnet/linked-node-list/1.3.11:
+  /@tsdotnet/linked-node-list/1.3.13:
     dependencies:
-      '@tsdotnet/collection-base': 2.0.4
+      '@tsdotnet/collection-base': 2.0.6
       '@tsdotnet/common-interfaces': 1.0.4
       '@tsdotnet/exceptions': 1.0.16
       tslib: 2.0.0
     dev: false
     resolution:
-      integrity: sha512-xZhIUFJ01CbKguJQOT6TlMmVZzYQKD2xkhjsOi69lCrus8IKPWz41i8qzWnXMX00MfAnt6R8Ib/5OMtyNeMkpQ==
+      integrity: sha512-KBJhR1hstJnNXi4AwNuRUs6XhjNbUfOVk+ZL7lH+/XkctNO8i+7Wfch/XGFmdmBsPpFrR427Cqv0lRW5WUUV/w==
   /@tsdotnet/type/1.0.8:
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.4
@@ -3058,10 +3058,10 @@ packages:
     resolution:
       integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
 specifiers:
-  '@tsdotnet/collection-base': ^2.0.4
+  '@tsdotnet/collection-base': ^2.0.6
   '@tsdotnet/compare': ^1.3.13
   '@tsdotnet/exceptions': ^1.0.16
-  '@tsdotnet/linked-node-list': ^1.3.11
+  '@tsdotnet/linked-node-list': ^1.3.13
   '@types/chai': ^4.2.11
   '@types/mocha': ^7.0.2
   '@typescript-eslint/eslint-plugin': ^3.0.1
