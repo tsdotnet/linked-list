@@ -58,10 +58,10 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@tsdotnet/collection-base": "^2.0.8",
-    "@tsdotnet/compare": "^1.3.16",
+    "@tsdotnet/collection-base": "^2.0.9",
+    "@tsdotnet/compare": "^1.3.17",
     "@tsdotnet/exceptions": "^1.0.17",
-    "@tsdotnet/linked-node-list": "^1.3.15",
+    "@tsdotnet/linked-node-list": "^1.3.16",
     "tslib": "^2.2.0"
   }
 }
