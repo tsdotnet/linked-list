@@ -71,7 +71,7 @@ export interface LinkedListNode<T>
  * An internal node is used to manage the order without exposing underlying link chain to the consumer.
  */
 class InternalNode<T>
-	implements LinkedNode<InternalNode<T>>, NodeWithValue<T>
+implements LinkedNode<InternalNode<T>>, NodeWithValue<T>
 {
 	external?: LinkedListNode<T>;
 
@@ -481,7 +481,7 @@ export default class LinkedList<T>
 
 // Use an internal node class to prevent mucking up the LinkedList.
 class InternalLinkedListNode<T>
-	implements LinkedListNode<T>
+implements LinkedListNode<T>
 {
 	constructor (
 		private _list: LinkedList<T>,

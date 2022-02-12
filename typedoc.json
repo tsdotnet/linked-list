@@ -1,9 +1,6 @@
 {
   "entryPoints": [
-    "./src"
-  ],
-  "exclude": [
-    "./src/index.ts"
+    "./src/LinkedList.ts"
   ],
   "out": "docs",
   "includeVersion": true,
