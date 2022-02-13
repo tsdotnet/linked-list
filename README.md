@@ -9,7 +9,7 @@ A doubly (bidirectional) linked list.  Acts as a safe, value focused wrapper for
 
 ## Docs
 
-[tsdotnet.github.io/linked-list](https://tsdotnet.github.io/linked-list/classes/default.html)
+[tsdotnet.github.io/linked-list](https://tsdotnet.github.io/linked-list/)
 
 This value focused linked list offers a safe to use node interface that only generates externally accessible nodes on demand.
 
