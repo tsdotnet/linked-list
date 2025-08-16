@@ -1,14 +1,14 @@
+"use strict";
 /*!
  * @author electricessence / https://github.com/electricessence/
  * Based Upon: http://msdn.microsoft.com/en-us/library/he2s3bh7%28v=vs.110%29.aspx
  * Licensing: MIT
  */
-import { LinkedNodeList } from '@tsdotnet/linked-node-list';
-import InvalidOperationException from '@tsdotnet/exceptions/dist/InvalidOperationException';
-import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
-import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
-import areEqual from '@tsdotnet/compare/dist/areEqual';
-import { ExtendedIterable } from '@tsdotnet/collection-base';
+Object.defineProperty(exports, "__esModule", { value: true });
+const linked_node_list_1 = require("@tsdotnet/linked-node-list");
+const exceptions_1 = require("@tsdotnet/exceptions");
+const collection_base_1 = require("@tsdotnet/collection-base");
+const compare_1 = require("@tsdotnet/compare");
 /*
  * An internal node is used to manage the order without exposing underlying link chain to the consumer.
  */
@@ -27,12 +27,12 @@ function ensureExternal(node, list) {
 }
 function getInternal(node, list) {
     if (!node)
-        throw new ArgumentNullException('node');
+        throw new exceptions_1.ArgumentNullException('node');
     if (node.list != list)
-        throw new InvalidOperationException('Provided node does not belong to this list.');
+        throw new exceptions_1.InvalidOperationException('Provided node does not belong to this list.');
     const n = node._nodeInternal;
     if (!n)
-        throw new InvalidOperationException('Provided node is not valid.');
+        throw new exceptions_1.InvalidOperationException('Provided node is not valid.');
     return n;
 }
 function detachExternal(node) {
@@ -48,10 +48,10 @@ function detachExternal(node) {
 /**
  * A doubly (bidirectional) linked list.  Acts as a safe, value focused wrapper for a [linked-node-list](https://github.com/tsdotnet/linked-node-list).
  */
-export default class LinkedList extends CollectionBase {
-    constructor(initialValues, equalityComparer = areEqual) {
+class LinkedList extends collection_base_1.CollectionBase {
+    constructor(initialValues, equalityComparer = compare_1.areEqual) {
         super(equalityComparer);
-        this._listInternal = new LinkedNodeList();
+        this._listInternal = new linked_node_list_1.LinkedNodeList();
         if (initialValues)
             this._addEntries(initialValues);
     }
@@ -254,7 +254,7 @@ export default class LinkedList extends CollectionBase {
     get reversed() {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const _ = this;
-        return (_._reversed || (_._reversed = Object.freeze(ExtendedIterable.create({
+        return (_._reversed || (_._reversed = Object.freeze(collection_base_1.ExtendedIterable.create({
             *[Symbol.iterator]() {
                 for (const n of _._listInternal.reversed) {
                     yield n.value;
@@ -314,6 +314,7 @@ export default class LinkedList extends CollectionBase {
         return false;
     }
 }
+exports.default = LinkedList;
 // Use an internal node class to prevent mucking up the LinkedList.
 class InternalLinkedListNode {
     constructor(_list, _nodeInternal) {

@@ -1,21 +1,20 @@
-"use strict";
 /*!
  * @author electricessence / https://github.com/electricessence/
  * Based Upon: http://msdn.microsoft.com/en-us/library/he2s3bh7%28v=vs.110%29.aspx
  * Licensing: MIT
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = require("tslib");
-const linked_node_list_1 = require("@tsdotnet/linked-node-list");
-const InvalidOperationException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/InvalidOperationException"));
-const ArgumentNullException_1 = tslib_1.__importDefault(require("@tsdotnet/exceptions/dist/ArgumentNullException"));
-const CollectionBase_1 = tslib_1.__importDefault(require("@tsdotnet/collection-base/dist/CollectionBase"));
-const areEqual_1 = tslib_1.__importDefault(require("@tsdotnet/compare/dist/areEqual"));
-const collection_base_1 = require("@tsdotnet/collection-base");
+import { LinkedNodeList } from '@tsdotnet/linked-node-list';
+import { InvalidOperationException, ArgumentNullException } from '@tsdotnet/exceptions';
+import { CollectionBase, ExtendedIterable } from '@tsdotnet/collection-base';
+import { areEqual } from '@tsdotnet/compare';
 /*
  * An internal node is used to manage the order without exposing underlying link chain to the consumer.
  */
 class InternalNode {
+    value;
+    external;
+    previous;
+    next;
     constructor(value) {
         this.value = value;
     }
@@ -30,12 +29,12 @@ function ensureExternal(node, list) {
 }
 function getInternal(node, list) {
     if (!node)
-        throw new ArgumentNullException_1.default('node');
+        throw new ArgumentNullException('node');
     if (node.list != list)
-        throw new InvalidOperationException_1.default('Provided node does not belong to this list.');
+        throw new InvalidOperationException('Provided node does not belong to this list.');
     const n = node._nodeInternal;
     if (!n)
-        throw new InvalidOperationException_1.default('Provided node is not valid.');
+        throw new InvalidOperationException('Provided node is not valid.');
     return n;
 }
 function detachExternal(node) {
@@ -51,10 +50,10 @@ function detachExternal(node) {
 /**
  * A doubly (bidirectional) linked list.  Acts as a safe, value focused wrapper for a [linked-node-list](https://github.com/tsdotnet/linked-node-list).
  */
-class LinkedList extends CollectionBase_1.default {
-    constructor(initialValues, equalityComparer = areEqual_1.default) {
+export default class LinkedList extends CollectionBase {
+    _listInternal = new LinkedNodeList();
+    constructor(initialValues, equalityComparer = areEqual) {
         super(equalityComparer);
-        this._listInternal = new linked_node_list_1.LinkedNodeList();
         if (initialValues)
             this._addEntries(initialValues);
     }
@@ -68,8 +67,7 @@ class LinkedList extends CollectionBase_1.default {
      * Returns the first value or undefined if the list is empty.
      */
     get firstValue() {
-        var _a;
-        return (_a = this._listInternal.first) === null || _a === void 0 ? void 0 : _a.value;
+        return this._listInternal.first?.value;
     }
     /**
      * Returns the last node or undefined if the list is empty.
@@ -81,8 +79,7 @@ class LinkedList extends CollectionBase_1.default {
      * Returns the last value or undefined if the list is empty.
      */
     get lastValue() {
-        var _a;
-        return (_a = this._listInternal.last) === null || _a === void 0 ? void 0 : _a.value;
+        return this._listInternal.last?.value;
     }
     /**
      * The version number used to track changes.
@@ -106,8 +103,7 @@ class LinkedList extends CollectionBase_1.default {
      * @returns The value at the index requested or undefined.
      */
     getValueAt(index) {
-        var _a;
-        return (_a = this._listInternal.getNodeAt(index)) === null || _a === void 0 ? void 0 : _a.value;
+        return this._listInternal.getNodeAt(index)?.value;
     }
     /**
      * Iterates the list returns the the node at the index requested.
@@ -160,7 +156,7 @@ class LinkedList extends CollectionBase_1.default {
      */
     takeFirstValue() {
         const n = this._listInternal.first;
-        return this._removeNodeInternal(n) ? n === null || n === void 0 ? void 0 : n.value : undefined;
+        return this._removeNodeInternal(n) ? n?.value : undefined;
     }
     /**
      * Removes the first node.
@@ -175,7 +171,7 @@ class LinkedList extends CollectionBase_1.default {
      */
     takeLastValue() {
         const n = this._listInternal.last;
-        return this._removeNodeInternal(n) ? n === null || n === void 0 ? void 0 : n.value : undefined;
+        return this._removeNodeInternal(n) ? n?.value : undefined;
     }
     /**
      * Removes the last node.
@@ -250,6 +246,7 @@ class LinkedList extends CollectionBase_1.default {
             yield n.value;
         }
     }
+    _reversed;
     /**
      * Iterable for iterating this collection in reverse order.
      * @return {Iterable}
@@ -257,7 +254,7 @@ class LinkedList extends CollectionBase_1.default {
     get reversed() {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const _ = this;
-        return (_._reversed || (_._reversed = Object.freeze(collection_base_1.ExtendedIterable.create({
+        return (_._reversed || (_._reversed = Object.freeze(ExtendedIterable.create({
             *[Symbol.iterator]() {
                 for (const n of _._listInternal.reversed) {
                     yield n.value;
@@ -317,9 +314,10 @@ class LinkedList extends CollectionBase_1.default {
         return false;
     }
 }
-exports.default = LinkedList;
 // Use an internal node class to prevent mucking up the LinkedList.
 class InternalLinkedListNode {
+    _list;
+    _nodeInternal;
     constructor(_list, _nodeInternal) {
         this._list = _list;
         this._nodeInternal = _nodeInternal;

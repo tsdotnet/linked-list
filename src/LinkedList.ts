@@ -4,18 +4,15 @@
  * Licensing: MIT
  */
 
-import {
+import type {
 	LinkedNode,
-	LinkedNodeList,
 	LinkedNodeWithValue,
 	NodeWithValue
 } from '@tsdotnet/linked-node-list';
-import InvalidOperationException from '@tsdotnet/exceptions/dist/InvalidOperationException';
-import ArgumentNullException from '@tsdotnet/exceptions/dist/ArgumentNullException';
-import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
-import {EqualityComparison} from '@tsdotnet/compare/dist/Comparable';
-import areEqual from '@tsdotnet/compare/dist/areEqual';
-import {ExtendedIterable} from '@tsdotnet/collection-base';
+import {LinkedNodeList} from '@tsdotnet/linked-node-list';
+import {InvalidOperationException, ArgumentNullException} from '@tsdotnet/exceptions';
+import {CollectionBase, ExtendedIterable} from '@tsdotnet/collection-base';
+import {areEqual, type EqualityComparison} from '@tsdotnet/compare';
 
 
 /*****************************

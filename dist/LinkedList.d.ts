@@ -3,10 +3,9 @@
  * Based Upon: http://msdn.microsoft.com/en-us/library/he2s3bh7%28v=vs.110%29.aspx
  * Licensing: MIT
  */
-import { LinkedNodeWithValue } from '@tsdotnet/linked-node-list';
-import CollectionBase from '@tsdotnet/collection-base/dist/CollectionBase';
-import { EqualityComparison } from '@tsdotnet/compare/dist/Comparable';
-import { ExtendedIterable } from '@tsdotnet/collection-base';
+import type { LinkedNodeWithValue } from '@tsdotnet/linked-node-list';
+import { CollectionBase, ExtendedIterable } from '@tsdotnet/collection-base';
+import { type EqualityComparison } from '@tsdotnet/compare';
 /*****************************
  * IMPORTANT NOTES ABOUT PERFORMANCE:
  * http://jsperf.com/simulating-a-queue
