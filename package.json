@@ -8,7 +8,9 @@
     ".": {
       "import": "./dist/esm/LinkedList.js",
       "require": "./dist/cjs/LinkedList.js",
-      "types": "./dist/LinkedList.d.ts"
+      "umd": "./dist/umd/LinkedList.js",
+      "types": "./dist/LinkedList.d.ts",
+      "default": "./dist/cjs/LinkedList.js"
     }
   },
   "types": "dist/LinkedList.d.ts",
