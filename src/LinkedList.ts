@@ -70,10 +70,10 @@ export interface LinkedListNode<T>
 class InternalNode<T>
 implements LinkedNode<InternalNode<T>>, NodeWithValue<T>
 {
-	external?: LinkedListNode<T>;
+	external?: LinkedListNode<T> | undefined;
 
-	previous?: InternalNode<T>;
-	next?: InternalNode<T>;
+	previous?: InternalNode<T> | undefined;
+	next?: InternalNode<T> | undefined;
 
 	constructor (public value: T)
 	{
@@ -413,12 +413,15 @@ export default class LinkedList<T>
 			list   = this._listInternal;
 
 		let removedCount = 0;
-		for(const node of list)
+		let next = list.first;
+		
+		while(next && removedCount < max)
 		{
-			if(node && equals(item, node.value) && this._removeNodeInternal(node))
+			const current = next;
+			next = next.next; // Get the next node before potentially removing current
+			
+			if(equals(item, current.value) && this._removeNodeInternal(current))
 				removedCount++;
-
-			if(removedCount>=max) break;
 		}
 
 		return removedCount;

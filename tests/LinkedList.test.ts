@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import {expect} from 'chai';
-import * as CollectionTests from './Collection';
+import { describe, it, expect } from 'vitest';
+import * as CollectionTests from './Collection.utils.js';
 import LinkedList from '../src/LinkedList';
 
 const CLASS_NAME = 'LinkedList';
@@ -51,7 +51,7 @@ describe('LinkedList', () => {
 	describe('.first', () => {
 		it('should be undefined if empty list', () => {
 			const list = new LinkedList<number>();
-			expect(list.first).to.be.undefined;
+			expect(list.first).toBeUndefined();
 		});
 	});
 
@@ -60,7 +60,7 @@ describe('LinkedList', () => {
 			const list = new LinkedList<number>([1, 2, 3, 2, 3, 4]);
 			const node = list.find(3)!;
 			expect(node.value).equal(3);
-			expect(node).not.to.be.undefined;
+			expect(node).not.toBeUndefined();
 			expect(node.previous!.value).equal(2);
 			expect(node.previous!.previous!.value).equal(1);
 		});
@@ -68,7 +68,7 @@ describe('LinkedList', () => {
 		it('should return undefined for non members', () => {
 			const list = new LinkedList<number>([1, 2, 3, 2, 3, 4]);
 			const node = list.find(10)!;
-			expect(node).to.be.undefined;
+			expect(node).toBeUndefined();
 		});
 	});
 
@@ -77,15 +77,15 @@ describe('LinkedList', () => {
 			const list = new LinkedList<number>([1, 2, 3, 2, 3, 4]);
 			const node = list.findLast(3)!;
 			expect(node.value).equal(3);
-			expect(node).not.to.be.undefined;
+			expect(node).not.toBeUndefined();
 			expect(node.next!.value).equal(4);
-			expect(node.next!.next?.value).to.be.undefined;
+			expect(node.next!.next?.value).toBeUndefined();
 		});
 
 		it('should return undefined for non members', () => {
 			const list = new LinkedList<number>([1, 2, 3, 2, 3, 4]);
 			const node = list.findLast(10)!;
-			expect(node).to.be.undefined;
+			expect(node).toBeUndefined();
 		});
 	});
 
@@ -93,9 +93,9 @@ describe('LinkedList', () => {
 		it('should remove an item once from the list', () => {
 			const list = new LinkedList<number>([1, 2, 3, 2, 3, 4]);
 			const len = list.count;
-			expect(list.removeOnce(10)).to.be.false;
+			expect(list.removeOnce(10)).toBe(false);
 			expect(list.count).equal(len);
-			expect(list.removeOnce(2)).to.be.true;
+			expect(list.removeOnce(2)).toBe(true);
 			expect(list.count).equal(len - 1);
 			expect(list.toArray()).to.have.ordered.members([1, 3, 2, 3, 4]);
 		});
@@ -106,7 +106,7 @@ describe('LinkedList', () => {
 			const list = new LinkedList<number>([1, 2]);
 			expect(list.takeFirstValue()).equal(1);
 			expect(list.takeFirstValue()).equal(2);
-			expect(list.takeFirstValue()).to.be.undefined;
+			expect(list.takeFirstValue()).toBeUndefined();
 		});
 	});
 
@@ -115,26 +115,26 @@ describe('LinkedList', () => {
 			const list = new LinkedList<number>([1, 2]);
 			expect(list.takeLastValue()).equal(2);
 			expect(list.takeLastValue()).equal(1);
-			expect(list.takeLastValue()).to.be.undefined;
+			expect(list.takeLastValue()).toBeUndefined();
 		});
 	});
 
 	describe('.removeNode(node)', () => {
 		it('should throw if node is null', () => {
 			const list = new LinkedList<number>(parts);
-			expect(() => list.removeNode(null!)).to.throw();
+			expect(() => list.removeNode(null!)).toThrow();
 		});
 
 		it('should throw if node does not belong to list', () => {
 			const list = new LinkedList<number>(parts);
 			// @ts-expect-error
-			expect(() => list.removeNode({value: 10})).to.throw();
+			expect(() => list.removeNode({value: 10})).toThrow();
 		});
 
 		it('should throw if node is detached', () => {
 			const list = new LinkedList<number>(parts);
 			// @ts-expect-error
-			expect(() => list.removeNode({value: 10, list: list})).to.throw();
+			expect(() => list.removeNode({value: 10, list: list})).toThrow();
 		});
 	});
 
@@ -163,29 +163,29 @@ describe('LinkedList', () => {
 		expect(list.getValueAt(2)).equal(5);
 		expect(list!.getNodeAt(4)!.value).equal(10);
 		expect(list.getValueAt(4)).equal(10);
-		expect(list.removeLast()).to.be.true;
-		expect(list.removeFirst()).to.be.true;
+		expect(list.removeLast()).toBe(true);
+		expect(list.removeFirst()).toBe(true);
 		const n = list.getNodeAt(1)!;
-		expect(list.removeAt(1)).to.be.true;
-		expect(() => n.value).to.throw();
+		expect(list.removeAt(1)).toBe(true);
+		expect(() => n.value).toThrow();
 
 		const last = list.last!;
 		expect(last.previous!.value).equal(1);
 		expect(last.previous!.next).equal(last);
 		// @ts-expect-error;
 		last.dispose();
-		expect(!last.list).to.be.true;
+		expect(!last.list).toBe(true);
 		expect(list.count).equal(1);
 
-		expect(() => last.remove()).not.to.throw();
-		expect(() => last.value).to.throw();
-		expect(() => last.next).to.throw();
-		expect(() => last.previous).to.throw();
+		expect(() => last.remove()).not.toThrow();
+		expect(() => last.value).toThrow();
+		expect(() => last.next).toThrow();
+		expect(() => last.previous).toThrow();
 
 		const first = list.first!;
 		list.dispose();
-		expect(!first.list).to.be.true;
-		expect(() => first.value).to.throw();
+		expect(!first.list).toBe(true);
+		expect(() => first.value).toThrow();
 
 	});
 
