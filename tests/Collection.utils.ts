@@ -124,9 +124,14 @@ export function Collection<T>(
 		it('equality comparison should be strict', () => {
 			expect(collection.contains(null as any)).toBe(false);
 		});
-		it.skip('should throw if modified while iterating.', () => {
-			// TODO: This test used to pass with Chai but now fails with Vitest
-			// The iteration safety feature may need investigation
+		it('should throw if modified while iterating.', () => {
+			// Ensure collection has items for iteration test
+			if (collection.count === 0) {
+				for (const v of sourceValues) {
+					collection.add(v);
+				}
+			}
+			
 			expect(() => {
 				for (const e of collection) {
 					collection.add(e);
