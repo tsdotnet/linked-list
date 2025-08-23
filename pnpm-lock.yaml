@@ -28,14 +28,14 @@ importers:
         specifier: ^2.1.3
         version: 2.1.3
       '@tsdotnet/compare':
-        specifier: ^1.6.1
-        version: 1.6.1
+        specifier: ^1.7.0
+        version: 1.7.0
       '@tsdotnet/exceptions':
         specifier: ^1.2.4
         version: 1.2.4
       '@tsdotnet/linked-node-list':
-        specifier: ^1.4.2
-        version: 1.4.2
+        specifier: ^1.4.3
+        version: 1.4.3
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -513,14 +513,14 @@ packages:
   '@tsdotnet/common-interfaces@1.0.5':
     resolution: {integrity: sha512-O1sFLbaTpeAsudKSbe+IGf4vBpjG1zYYPTjhS1z2HT63M1R/izq5c9YndH+2ZQXIaXVBNWNJ7ml1OPhIadRZFg==}
 
-  '@tsdotnet/compare@1.6.1':
-    resolution: {integrity: sha512-cLwL6LTCqaCOjL2gChT0yKEI4NeMI3HiA7hZg8wn8pHIo6kzZ3x6tUsUpFRd7zmPkQJwsvgTnO7XQIPxt5NrPA==}
+  '@tsdotnet/compare@1.7.0':
+    resolution: {integrity: sha512-OrS0CPvxShTVEYEErlYf3miODCvEti5/1yi4jPWE8QUwjpIDr5ps3sTCN1cGc4HQGZAoCHuyBDqKNljXjzBhpw==}
 
   '@tsdotnet/exceptions@1.2.4':
     resolution: {integrity: sha512-Lipb6IcHzEWc58XSgGfBkYmBjqQlLLGVBcPMEVHGvZferqw1Abn85BHpcDMwiLyGSq8PZgQjLGeu4akjU2DAfw==}
 
-  '@tsdotnet/linked-node-list@1.4.2':
-    resolution: {integrity: sha512-oX3z2lR4/9CC2XP89jA97h3oZcNoChX6aemMAUWW+rUIcAIvtjv6JsoyBJLkQV2xDdR0NNeWSm8QCcnTmKRXtA==}
+  '@tsdotnet/linked-node-list@1.4.3':
+    resolution: {integrity: sha512-4+6TBu9NYJu1/99TnwFCx5CHmtSnW55OurMH8IeMs66VoLxkhU0qyo/+Tzk6S8+X+qvbgyxAFBxJiVRqRS72Bg==}
 
   '@tsdotnet/type@1.2.4':
     resolution: {integrity: sha512-BTFVGsbRGzLQIPx66JtmSSYbbkqpgdDIWYVPd4KbCM+h4RjVhpRwUkdS7I3G0NjGCbMCVkkC+GR4d6T3JOm+1Q==}
@@ -1789,13 +1789,13 @@ snapshots:
   '@tsdotnet/collection-base@2.1.3':
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.5
-      '@tsdotnet/compare': 1.6.1
+      '@tsdotnet/compare': 1.7.0
       '@tsdotnet/exceptions': 1.2.4
       tslib: 2.8.1
 
   '@tsdotnet/common-interfaces@1.0.5': {}
 
-  '@tsdotnet/compare@1.6.1':
+  '@tsdotnet/compare@1.7.0':
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.5
       '@tsdotnet/type': 1.2.4
@@ -1805,7 +1805,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@tsdotnet/linked-node-list@1.4.2':
+  '@tsdotnet/linked-node-list@1.4.3':
     dependencies:
       '@tsdotnet/collection-base': 2.1.3
       '@tsdotnet/common-interfaces': 1.0.5
