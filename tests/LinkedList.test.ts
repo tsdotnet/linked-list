@@ -29,7 +29,9 @@ describe('LinkedList', () => {
 		describe('.addBefore(value)', () => {
 			const partsSpliced = part1.concat([insertion]).concat(part2);
 			const list = new LinkedList<number>(parts);
-			list.find(part2[0])!.addBefore(insertion);
+			const firstPart2 = part2[0];
+			expect(firstPart2).toBeDefined();
+			list.find(firstPart2!)!.addBefore(insertion);
 			it('should match expected count after inserting before', () => {
 				expect(list.count, '.count').equal(partsSpliced.length);
 				expect(list.toArray()).to.have.ordered.members(partsSpliced);
@@ -39,7 +41,9 @@ describe('LinkedList', () => {
 		describe('.addAfter(value)', () => {
 			const partsSpliced = part1.concat([insertion]).concat(part2);
 			const list = new LinkedList<number>(parts);
-			list.find(part1[part1.length - 1])!.addAfter(insertion);
+			const lastPart1 = part1[part1.length - 1];
+			expect(lastPart1).toBeDefined();
+			list.find(lastPart1!)!.addAfter(insertion);
 			it('should match expected count after inserting before', () => {
 				expect(list.count, '.count').equal(partsSpliced.length);
 				expect(list.toArray()).to.have.ordered.members(partsSpliced);
