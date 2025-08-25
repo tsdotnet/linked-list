@@ -63,7 +63,7 @@
     "@tsdotnet/collection-base": "^2.1.9",
     "@tsdotnet/compare": "^1.7.4",
     "@tsdotnet/exceptions": "^1.2.5",
-    "@tsdotnet/linked-node-list": "^1.4.10",
+    "@tsdotnet/linked-node-list": "^1.4.11",
     "tslib": "^2.8.1"
   },
   "pnpm": {
