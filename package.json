@@ -57,12 +57,12 @@
     "rollup": "^4.59.0",
     "typedoc": "^0.28.17",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.57.0",
+    "typescript-eslint": "^8.57.1",
     "vitest": "^4.1.0"
   },
   "dependencies": {
-    "@tsdotnet/collection-base": "^2.1.9",
-    "@tsdotnet/compare": "^1.7.4",
+    "@tsdotnet/collection-base": "^2.1.11",
+    "@tsdotnet/compare": "^1.7.5",
     "@tsdotnet/exceptions": "^1.2.9",
     "@tsdotnet/linked-node-list": "^1.4.11",
     "tslib": "^2.8.1"
