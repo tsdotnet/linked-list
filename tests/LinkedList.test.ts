@@ -2,7 +2,7 @@
 
 import { describe, it, expect } from 'vitest';
 import * as CollectionTests from './Collection.utils.js';
-import LinkedList from '../src/LinkedList';
+import LinkedList from '../src/LinkedList.js';
 
 const CLASS_NAME = 'LinkedList';
 CollectionTests.StringCollection(CLASS_NAME, new LinkedList<string>());
