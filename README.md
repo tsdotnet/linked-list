@@ -1,28 +1,51 @@
-# ![alt text](https://avatars1.githubusercontent.com/u/64487547?s=30 "tsdotnet") tsdotnet / linked-list
+![@tsdotnet/linked-list: Nodes that link up. A doubly linked list, as in .NET.](https://cdn.jsdelivr.net/gh/tsdotnet/linked-list@master/assets/banner.svg)
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tsdotnet/linked-list/blob/master/LICENSE)
-![100% code coverage](https://img.shields.io/badge/coverage-100%25-green)
 [![npm version](https://img.shields.io/npm/v/@tsdotnet/linked-list.svg?style=flat-square)](https://www.npmjs.com/package/@tsdotnet/linked-list)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tsdotnet/linked-list/blob/master/LICENSE)
 
-A doubly (bidirectional) linked list.  Acts as a safe, value focused wrapper for a [linked-node-list](https://github.com/tsdotnet/linked-node-list).
+A doubly linked list with a .NET style API: add, find and remove values, and edit around nodes.
+
+## Install
+
+```sh
+npm install @tsdotnet/linked-list
+```
+
+## Usage
+
+```ts
+import LinkedList from '@tsdotnet/linked-list';
+
+const list = new LinkedList([1, 2, 3]).addLast(4);
+
+list.firstValue; // 1
+list.find(3)?.addAfter(99);
+[...list]; // [1, 2, 3, 99, 4]
+list.takeLastValue(); // 4
+```
+
+Nodes from `first`, `last` and `find` can insert and remove around themselves. `reversed` iterates backwards.
+
+## Use it from
+
+ESM (`import LinkedList from '@tsdotnet/linked-list';`) or CommonJS (`const LinkedList = require('@tsdotnet/linked-list').default;`).
+
+<details><summary>In a browser, without a bundler</summary>
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@tsdotnet/type@1/dist/umd/type.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsdotnet/compare@1/dist/umd/compare.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsdotnet/exceptions@1/dist/umd/exceptions.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsdotnet/collection-base@2/dist/umd/collection-base.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsdotnet/linked-node-list@1/dist/umd/linked-node-list.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsdotnet/linked-list@1/dist/umd/linked-list.min.js"></script>
+<script>
+  const LinkedList = tsdotnet.linkedList.default;
+</script>
+```
+
+</details>
 
 ## Docs
 
 [tsdotnet.github.io/linked-list](https://tsdotnet.github.io/linked-list/)
-
-This value focused linked list offers a safe to use node interface that only generates externally accessible nodes on demand.
-
-```typescript
-interface LinkedListNode<T>
-{
-  list: LinkedList<T>;
-  previous: LinkedListNode<T> | undefined;
-  next: LinkedListNode<T> | undefined;
-
-  value: T;
-
-  addBefore (entry: T): void;
-  addAfter (entry: T): void;
-  remove (): void;
-}
-```
