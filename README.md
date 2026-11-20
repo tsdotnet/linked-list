@@ -1,4 +1,4 @@
-![@tsdotnet/linked-list: Nodes that link up. A doubly linked list, as in .NET.](https://cdn.jsdelivr.net/gh/tsdotnet/linked-list@master/assets/banner.svg)
+<a href="https://tsdotnet.github.io/linked-list/"><img src="https://cdn.jsdelivr.net/gh/tsdotnet/linked-list@master/assets/banner.svg" alt="@tsdotnet/linked-list: Nodes that link up. A doubly linked list, as in .NET."></a>
 
 [![npm version](https://img.shields.io/npm/v/@tsdotnet/linked-list.svg?style=flat-square)](https://www.npmjs.com/package/@tsdotnet/linked-list)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tsdotnet/linked-list/blob/master/LICENSE)
